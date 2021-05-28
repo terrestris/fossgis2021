@@ -154,6 +154,14 @@ span.nope {
   text-shadow: 0 0 20px red;
 }
 
+.reveal section .highlight-logo-color {
+  text-shadow: 0 0 20px #35BBCE;
+}
+
+.reveal section .highlight-alt {
+  text-shadow: 0 0 20px darkblue;
+}
+
 .reveal section .unhighlight {
   opacity: 0.7;
 }
