@@ -1,0 +1,17 @@
+{
+  "name": "ol6-inline-examples",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "ol": "^6.2.2-dev.1583881025549"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "scripts": {
+    "start": "parcel serve --no-source-maps --no-cache --no-hmr src/index.html",
+    "build": "parcel build --no-content-hash --no-cache --no-source-maps --experimental-scope-hoisting src/index.html --public-url ./ --out-dir ./"
+  },
+  "author": "",
+  "license": "ISC"
+}

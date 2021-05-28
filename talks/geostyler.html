@@ -1,0 +1,573 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>GeoStyler - Ein generischer grafischer Stileditor für Geodaten</title>
+    <meta name="author" content="Jan Suleiman">
+    <meta name="author" content="terrestris GmbH &amp; Co. KG">
+    <meta name="author" content="Christian Mayer">
+    <meta name="author" content="meggsimum - B&uml;ro f&uml;r Geoinformatik">
+    <meta name="description" content="GeoStyler - Ein generischer grafischer Stileditor für Geodaten | Vortrag auf der FOSSGIS 2019, Dresden" />
+
+    <!--[if lt IE 9]>
+    <script src="../shared/reveal.js-3.6.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/reveal.css">
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/theme/beige.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/css/customized.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+          '../shared/reveal.js-3.6.0/css/print/pdf.css' :
+          '../shared/reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+
+    <div class="reveal">
+
+
+      <!-- BEGIN OF SLIDES -->
+      <div class="slides">
+
+        <section id="start"
+          data-background-image="../shared/img/geostyler-talk/geostyler_logo.svg"
+          data-background-size="auto 90%">
+          <p>&nbsp;</p>
+        </section>
+        <section id="title"
+          data-background-image="../shared/img/geostyler-talk/geostyler_logo_filter.svg"
+          data-background-size="auto 90%">
+          <h3>Neues vom</h3>
+          <br />
+          <h1>GeoStyler</h1>
+          <br />
+          <p>
+            <small>Jan Suleiman, terrestris GmbH & Co. KG</small>
+            <small>Christian Mayer, meggsimum - Büro für Geoinformatik</small>
+          </p>
+          <hr />
+          <p>
+            <small>FOSSGIS 2020, Freiburg i. Br., 12.03.2020</small>
+          </p>
+        </section>
+
+        <section id="toc">
+          <h2>Gliederung</h2>
+          <ul>
+            <li>Über&hellip;</li>
+            <!-- <li>GeoStyler</li> -->
+            <li>Architektur</li>
+            <li>Features</li>
+            <li>Beispiele</li>
+            <li>Stand & Ausblick</li>
+          </ul>
+        </section>
+
+        <section id="about-author-jan-suleiman">
+          <h2>Jan Suleiman</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/js.jpeg" class="plain" width="200"/><br />
+              <small>
+                <a class="email" href="mailto:suleiman@terrestris.de">suleiman@terrestris.de</a><br />
+                <a class="github" href="https://github.com/jansule/">@jansule</a><br />
+              </small><br />
+            </div>
+            <div class="part"  style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li><i>cand.</i> M. Sc. Geoinformatik</li>
+                  <li>Developer @terrestris</li>
+                  <li>Kernentwickler GeoStyler</li>
+                  <li>Anwendungsentwickler</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section id="about-company-terrestris">
+          <h2>terrestris</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/terrestris-logo-normal.svg" class="plain" width="400"/>
+              <br /><small>
+              <a class="email" href="mailto:info@terrestris.de">info@terrestris.de</a><br />
+              <a class="github" href="https://github.com/terrestris/">@terrestris</a><br />
+              <a class="twitter" href="https://twitter.com/terrestrisde/">@terrestrisde</a>
+            </small>
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li><a href="https://www.terrestris.de/">terrestris.de</a></li>
+                  <li>OpenSource GIS aus Bonn</li>
+                  <li>Entwicklung, Projekte &amp; Support/Schulung</li>
+                  <li>Beratung, Planung, Implementierung &amp; Wartung</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <!-- <section id="were-hiring">
+          <h3>Teil des Teams werden?</h3>
+          <div id="teampic"></div>
+          <ul>
+            <li>Softwareentwickler/in</li>
+            <li>GIS Consultant</li>
+            <li>Praktikanten / betreute Abschlussarbeiten</li>
+          </ul>
+          <p>
+            Details gerne am terrestris Stand
+          </p>
+        </section> -->
+
+        <section id="author-christian-mayer">
+          <h2>Christian Mayer</h2>
+          <div class="split-info">
+              <div class="part" style="width:35%">
+                  <img src="../shared/img/chris-mayer.jpg" class="plain" width="200"/><br />
+                  <small>
+                      <a class="email" href="mailto:chris@meggsimum">chris@meggsimum.de</a><br />
+                      <a class="github" href="https://github.com/chrismayer/">@chrismayer</a><br />
+                      <a class="twitter" href="https://twitter.com/geofootballer/">@geofootballer</a><br />
+                  </small><br />
+              </div>
+              <div class="part"  style="width:60%">
+                  <div class="enumeration">
+                      <ul>
+                          <li>Geoinformatiker</li>
+                          <li>Softwareentwickler &amp; -architekt</li>
+                          <li>Kernentwickler und PSC Mitglied GeoExt</li>
+                          <li>Sprecher &amp; Trainer <br /> national &amp; international</li>
+                          <li>OSGeo Foundation Charter Member</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div style="clear:both"></div>
+      </section>
+
+      <section id="about-company-meggsimum">
+          <h2>meggsimum</h2>
+          <div class="split-info">
+              <div class="part" style="width:35%">
+                <img src="../shared/img/meggsimum-logo.png" class="plain" width="400"/>
+                <br /><small>
+                <a class="email" href="mailto:info@meggsimum.de">info@meggsimum.de</a><br />
+                <a class="github" href="https://github.com/meggsimum/">@meggsimum</a><br />
+                <a class="twitter" href="https://twitter.com/meggsimum/">@meggsimum</a>
+              </small>
+              </div>
+              <div class="part" style="width:60%">
+                  <div class="enumeration">
+                      <ul>
+                          <li><a href="https://meggsimum.de/">meggsimum.de</a></li>
+                          <li>Dienstleistungen im Bereich GIS, Webmapping &amp; GDI</li>
+                          <li>Maßgeschneiderte WebGIS-Lösungen</li>
+                          <li>Softwarekonzepte und Softwareentwicklung</li>
+                          <li>Geodaten</li>
+                          <li>Beratung und Schulung</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section>
+          <h1>GeoStyler</h1>
+        </section>
+
+        <section>
+          TODO<br/>
+
+          Batch editing<br/>
+
+          Vorschaukomponente gesamter Stil<br/>
+
+          Reihenfolge Stylingregeln<br/>
+
+          Regeln kopieren<br/>
+
+          Demo: Vordefinierte Beispiele<br/>
+
+          Composition Context<br/>
+
+          Stilparser (Shapefile)<br/>
+          
+          Datenparser (CQL parser)<br/>
+
+          UI Rasterdaten<br/>
+
+          GeoServer Plugin<br/>
+
+          Neue Contributors, mehr Interaktion, Dank an alle beteiligten
+
+
+        </section>
+
+        <section>
+          <a href="https://geostyler.github.io/geostyler-demo/">geostyler.org</a>
+          <iframe src="https://geostyler.github.io/geostyler-demo/" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <a href="https://geostyler.github.io/geostyler/latest/index.html">GeoStyler Doku</a>
+          <iframe src="https://geostyler.github.io/geostyler/latest/index.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h1>Neue Komponenten</h1>
+        </section>
+
+        <section>
+          <a href="https://geostyler.github.io/geostyler/latest/index.html">GeoStyler Doku</a>
+          <iframe src="https://geostyler.github.io/geostyler/latest/index.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h2>GeoStyler</h2>
+          Gebrauchsfertige Map Styling Bibliothek
+          <br/><br/>
+          <ul>
+            <li>Komponenten basiert</li>
+            <li>Stilformat unabhängig</li>
+            <li>Datenformat unabhängig</li>
+            <li>Framework unabhängig</li>
+            <li>Vollständig anpassbar</li>
+          </ul>
+        </section>
+
+        <!-- <section>
+          <h2>Architektur</h2>
+          <img src="../shared/img/geostyler-talk/parser.png" class="plain" width="1000"/>
+          <br/>
+          <br/>
+          <small>Entwicklung & Integration eigener Parser möglich</small>
+        </section> -->
+
+        <!-- <section>
+          <h2>Architektur</h2>
+          <img src="../shared/img/geostyler-talk/geostyler-architecture.png" class="plain" width="600"/>
+        </section> -->
+        <section>
+          <h2>Architektur</h2>
+          <img src="../shared/img/geostyler-talk/geostyler-architektur.svg" class="plain" width="1500"/>
+          <br/>
+          <br/>
+          <small>Entwicklung & Integration eigener Parser möglich</small>
+        </section>
+
+        <section style="position: relative;">
+        <h2>GeoStyler Core</h2>
+          <!-- <br/> -->
+          <p>UI-Komponenten</p>
+          <!-- <i>Details UI-Komponenten (bspw. customizable vs gebrauchsfertig)</i> -->
+          <img src="../shared/img/geostyler-talk/symbolizer.png" class="plain shadow" width="300"/>
+          <img src="../shared/img/geostyler-talk/wellknownname.png" class="plain shadow" style="position: absolute; top: 300px;" width="300"/>
+          <img src="../shared/img/geostyler-talk/filter.png" class="plain shadow" width="300"/>
+          <img src="../shared/img/geostyler-talk/codeeditor.png" class="plain shadow" width="300"/>
+        </section>
+
+        <section>
+          <!-- <h2>GeoStyler - Architektur</h2> -->
+          <h2>GeoStyler Core</h2>
+          <p>Stil Definition</p>
+          <!-- <i>Details Stil Definition (das Beste aus SLD und Mapbox)</i> -->
+          <ul style="float: left; width: 40%;">
+            <li>Ein JSON-Objekt pro Stil</li>
+            <li>Regelbasierte Stile</li>
+            <li>Inspiriert durch SLD und Mapbox</li>
+            <li>Typisiert</li>
+            <li>Lingua Franca d. GeoStylers</li>
+          </ul>
+          <pre style="float: right; width: 55%; margin-top: 0px;"><code data-trim class="javascript">
+{
+  "name": "Demo Style",
+  "rules": [
+    {
+      "name": "Rule 1",
+      "symbolizers": [
+        {
+          "kind": "Mark",
+          "color": "#0E1058",
+          "wellKnownName": "Triangle"
+        }
+      ]
+    }
+  ]
+}
+            </code></pre>
+        </section>
+
+        <!-- <section>
+          <h2>GeoStyler Parser</h2>
+          <img src="../shared/img/geostyler-talk/parser.png" class="plain" width="1000"/>
+          <br/>
+          <br/>
+          <small>Entwicklung & Integration eigener Parser möglich</small>
+        </section> -->
+
+        <section>
+          <h2>GeoStyler</h2>
+          <p>Features</p>
+            <ul>
+              <li>Regelbasierte Stile (inkl. Symbolizer)</li>
+              <li>Einfache bis komplexe Komponenten</li>
+              <li>Previews der Stile</li>
+              <li>Klassifikationen</li>
+              <li>ScaleDenominator & komplexe Filter</li>
+              <li>Berechnung überschneidender Regeln</li>
+            </ul>
+        </section>
+
+        <section>
+          <h2>GeoStyler</h2>
+          <p>Features</p>
+            <ul>
+              <li>Einbindung in bestehende Web(GIS) Projekte</li>
+              <li>Nutzung ohne UI-Komponenten</li>
+              <li>Verschiedene Layouts</li>
+              <li>i18n</li>
+            </ul>
+        </section>
+
+        <section>
+          <h2>Installation</h2>
+          <pre><code data-trim class="bash">
+              $ npm i geostyler
+
+              $ npm i geostyler-style
+              $ npm i geostyler-data
+
+              $ npm i geostyler-sld-parser
+              $ npm i geostyler-openlayers-parser
+              $ npm i geostyler-qgis-parser
+              $ npm i geostyler-mapbox-parser (*)
+
+              $ npm i geostyler-wfs-parser
+              $ npm i geostyler-geojson-parser
+            </code></pre>
+          <small style="float: right;">(*) Release ausstehend</small>
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Default Line Editor</p>
+          <pre style="float: left; width: 650px;"><code data-trim class="html">
+              &lt;LineEditor
+                symbolizer={symbolizer}
+                onSymbolizerChange={this.onSymbolizerChange}
+              /&gt;
+            </code></pre>
+          <img style="float: right;" src="../shared/img/geostyler-talk/lineeditor_default.png" class="plain shadow" width="300"/>
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Custom Line Editor</p>
+          <pre><code data-trim class="html">
+              class CustomLineEditor extends React.Component {
+                // ...
+                render() {
+                  return (
+                    &lt;ColorField
+                      color={color}
+                      onChange={this.onColorChange}
+                    /&gt;
+                    &lt;WidthField
+                      width={width}
+                      onChange={this.onWidthChange}
+                    /&gt;
+                  );
+                }
+              }
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Custom Line Editor</p>
+          <pre><code data-trim class="html">
+              &lt;CustomLineEditor
+                symbolizer={symbolizer}
+                onSymbolizerChange={this.onSymbolizerChange}
+              /&gt;
+            </code></pre>
+          <img src="../shared/img/geostyler-talk/lineeditor_custom.png" class="plain shadow" width="300"/>
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Klassifikationen</p>
+          <img src="../shared/img/geostyler-talk/classification.png" class="plain" width="750"/><br />
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Browser Extension</p>
+          <!-- <i>Platzhalter GeoStyler Browser Extension?</i> -->
+          <img src="../shared/img/geostyler-talk/browser-extension.png" class="plain" width="900"/><br />
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Vollständig Anpassbar</p>
+          <img src="../shared/img/geostyler-talk/bismap.png" class="plain" width="900"/><br />
+          <!-- <i>Platzhalter BisMap?</i> -->
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Nutzung von SLDs in OpenLayers</p>
+          <img src="../shared/img/geostyler-talk/geostyler-sld-usage-in-ol.jpg" class="plain" width="900"/><br />
+        </section>
+
+        <section>
+          <h2>Beispiel</h2>
+          <p>Nutzung von SLDs in OpenLayers</p>
+          <pre><code lang="javascript" data-trim>
+
+              const sldParser = new GeoStylerSLDParser.SldStyleParser();
+              const olParser =
+                new GeoStylerOpenlayersParser.OlStyleParser(ol);
+
+              sldParser.readStyle(sldXml)
+                  .then(function (gs) {
+                      olParser.writeStyle(gs).then(function (olStyle) {
+                          mapLayer.setStyle(olStyle);
+                      });
+                  }, function() {
+                      // handle error
+                  });
+
+          </code></pre>
+      </section>
+
+      <section>
+        <h2>GeoStyler Demo App</h2>
+        <p>
+          <a href="https://terrestris.github.io/geostyler-demo/" target="_blank">https://terrestris.github.io/geostyler-demo/</a>
+        </p>
+        <img src="../shared/img/geostyler-talk/geostyler-demo.png" class="plain"/>
+      </section>
+
+      <section>
+        <h2>Stand</h2>
+        <ul>
+          <li>Aktuell: v3.1.1, 01.03.2019</li>
+          <li>43 Releases</li>
+          <li>>1600 Commits im Main-Repository</li>
+          <li>10 Contributors</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Ausblick</h2>
+        <ul>
+          <li>Weitere UI-Komponenten</li>
+          <li>Weitere Stilparser</li>
+          <li>Unterstützung FontIcons</li>
+          <li>Unterstützung Rasterdaten</li>
+          <li>GeoServer Plugin</li>
+        </ul>
+      </section>
+
+        <section id="thanks-questions">
+          <h4>Vielen Dank</h4>
+          <hr />
+          <h1 style="font-size:3.0em">Fragen &amp; Anmerkungen?</h1>
+          <hr />
+          <p class="subtle">
+            <a href="#/imprint">Impressum</a>
+          </p>
+        </section>
+
+        <section id="imprint">
+          <h2>Impressum</h2>
+          <h4>Autoren</h4>
+          <div style="width: 45%; float: right;">
+            <address style="text-align: right">
+              <strong>Christian Mayer</strong><br />
+              <span style="font-size: smaller;">
+              meggsimum - Büro für Geoinformatik<br />
+              Schillerstraße 2a<br />
+              67112 Mutterstadt<br />
+              chris@meggsimum.de
+              </span>
+            </address>
+          </div>
+          <div style="width: 45%; float: left;">
+            <address style="text-align: left">
+              <strong>Jan Suleiman</strong><br />
+              <span style="font-size: smaller;">
+              terrestris GmbH &amp; Co. KG<br />
+              Kölnstr. 99<br />
+              53111 Bonn<br />
+              suleiman@terrestris.de
+              </span>
+            </address>
+          </div>
+          <h4 style="clear:both;">Lizenz</h4>
+          <p id="license">
+            Diese Folien sind unter <a
+            href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>
+            veröffentlicht.
+          </p>
+          <p>
+            <a href="https://terrestris.github.io/fossgis2019/talks/geostyler.html#/start">Vortragsfolien</a>,
+            <a href="https://terrestris.github.io/fossgis2019/talks/geostyler.pdf">PDF-Version</a>,
+            <a href="https://github.com/terrestris/fossgis2019">git repository</a>
+          </p>
+        </section>
+
+      </div>
+      <!-- END OF SLIDES -->
+
+
+    </div>
+
+    <script src="../shared/reveal.js-3.6.0/lib/js/head.min.js"></script>
+    <script src="../shared/reveal.js-3.6.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        dependencies: [
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/marked.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/markdown.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/notes/notes.js', async: true },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>

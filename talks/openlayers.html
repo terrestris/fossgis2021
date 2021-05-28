@@ -1,0 +1,592 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenLayers: v6.x und wie es weitergeht | Vortrag auf der FOSSGIS 2020, Freiburg</title>
+    <meta name="author" content="Marc Jansen">
+    <meta name="author" content="terrestris GmbH &amp; Co. KG">
+    <meta name="author" content="Andreas Hocevar">
+    <meta name="author" content="ahocevar geospatial">
+    <meta name="description" content="OpenLayers: v6.x und wie es weitergeht | Vortrag auf der FOSSGIS 2020, Freiburg" />
+
+    <!--[if lt IE 9]>
+    <script src="../shared/reveal.js-3.6.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/reveal.css">
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/theme/beige.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/css/customized.css" />
+    <link rel="stylesheet" href="../shared/css/animate.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+          '../shared/reveal.js-3.6.0/css/print/pdf.css' :
+          '../shared/reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+
+    <div class="reveal">
+
+      <!-- BEGIN OF SLIDES -->
+      <div class="slides">
+
+        <section id="start"
+          data-background-image="../shared/img/ol-logo.svg"
+          data-background-size="auto 90%">
+          <p>&nbsp;</p>
+        </section>
+
+        <section id="title"
+          data-background-image="../shared/img/ol-logo-filter.svg"
+          data-background-size="auto 90%">
+          <h1>OpenLayers</h1>
+          <br />
+          <h3>v6.x und wie es weitergeht</h3>
+          <br />
+          <p>
+            <small>Marc Jansen, terrestris GmbH &amp; Co. KG</small> <br />
+            <small>Andreas Hocevar, ahocevar geospatial</small>
+          </p>
+          <hr />
+          <p>
+            <small style="text-shadow: 0px 0px 2px #ffffff;">FOSSGIS 2020, Freiburg, 12.03.2020</small>
+          </p>
+        </section>
+
+        <section id="toc">
+          <h2>Gliederung</h2>
+          <ul>
+            <li>&uuml;ber&hellip;</li>
+            <li>OpenLayers</li>
+            <li>Stand</li>
+            <li>v6.x: Neues und Upgrade</li>
+            <li>Zukünftige Entwicklung</li>
+          </ul>
+        </section>
+
+        <section id="author-marc-jansen">
+          <h2>Marc Jansen</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/mj.jpg" class="plain" width="200"/><br />
+              <small>
+                <a class="email" href="mailto:jansen@terrestris.de">jansen@terrestris.de</a><br />
+                <a class="github" href="https://github.com/marcjansen/">@marcjansen</a><br />
+                <a class="twitter" href="https://twitter.com/selectoid/">@selectoid</a><br />
+              </small><br />
+              <img src="../shared/img/openlayers_de_1ed.png" class="plain" width=100 />
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li>Gesch&auml;ftsf&uuml;hrer @terrestris &amp; @mundialis</li>
+                  <li>Kernentwickler &amp; PSC OpenLayers</li>
+                  <li>GeoExt, SHOGun, GeoStyler</li>
+                  <!-- <li>Buchautor "OpenLayers"</li> -->
+                  <li>Sprecher &amp; Trainer <br /> national &amp; international</li>
+                  <li>OSGeo Foundation Charter Member</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section id="about-company-terrestris">
+          <h2>terrestris</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/terrestris-logo-normal.svg" class="plain" width="400"/>
+              <br /><small>
+              <a class="email" href="mailto:info@terrestris.de">info@terrestris.de</a><br />
+              <a class="github" href="https://github.com/terrestris/">@terrestris</a><br />
+              <a class="twitter" href="https://twitter.com/terrestrisde/">@terrestrisde</a>
+            </small>
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li><a href="https://www.terrestris.de/">terrestris.de</a></li>
+                  <li>OpenSource GIS aus Bonn</li>
+                  <li>Entwicklung, Projekte &amp; Support/Schulung</li>
+                  <li>Beratung, Planung, Implementierung &amp; Wartung</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <!-- <section id="were-hiring">
+          <h3>Teil des Teams werden?</h3>
+          <div id="teampic"></div>
+          <ul>
+            <li>Softwareentwickler/in</li>
+            <li>GIS Consultant</li>
+            <li>Praktikanten / betreute Abschlussarbeiten</li>
+          </ul>
+          <p>
+            Details gerne am terrestris Stand
+          </p>
+        </section> -->
+
+        <section id="author-andreas-hocevar">
+          <h2>Andreas Hocevar</h2>
+          <h3>ahocevar geospatial</h3>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/ah.jpg" class="plain" width="200"/><br />
+              <small>
+                <a class="email" href="mailto:mail@ahocevar.com">mail@ahocevar.com</a><br />
+                <a class="github" href="https://github.com/ahocevar/">@ahocevar</a><br />
+                <a class="twitter" href="https://twitter.com/ahoce/">@ahoce</a><br />
+              </small>
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li>OpenLayers Kernentwickler und im Steering Committee</lI>
+                  <li>ol-mapbox-style Maintainer und Entwickler</li>
+                  <li>Professioneller OpenLayers Support</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section>
+          <h2>Was ist OpenLayers?</h2>
+          <blockquote lang="en">
+            A high-performance, feature-packed library for all your mapping
+            needs.
+            <footer>&mdash; <cite><a href="https://openlayers.org/">openlayers.org, 10. M&auml;rz 2020</a></cite></footer>
+          </blockquote>
+          <ul class="fragment">
+            <li>OpenSource (BSD)</li>
+            <li>JavaScript</li>
+            <li>OSGeo Projekt</li>
+          </ul>
+        </section>
+
+        <section data-background="../shared/img/ol-talk/Old-world-map.png">
+          <!-- Bild ist PD -->
+          <h3>FOSSGIS 2008, Freiburg</h3>
+          <ul>
+            <li style="margin-bottom: 1em;">
+              T. Adams und M. Jansen, terrestris: <br />
+              "OpenLayers &mdash; oder: das 'Kartendingsbums' für jede Webseite", <a href="https://www.fossgis.de/wiki/Konferenz_2008/Abstracts#OpenLayers_-_oder:_das_.27Kartendingsbums.27_f.C3.BCr_jede_Webseite">↗</a><br />
+            </li>
+            
+            <li>
+              Emanuel Schütze, Intevation:<br />"OpenLayers &mdash; Neue Features im Überblick", <a href="https://www.fossgis.de/wiki/Konferenz_2008/Abstracts#OpenLayers_-_Neue_Features_im_.C3.9Cberblick">↗</a><br />
+            </li>
+          </ul>
+        </section>
+
+        <section data-background-video="../shared/img/ol-talk/examples.mp4" data-background-size="contain">
+          <div style="background-color: #ffffff77; color: black; border-radius: 1em; margin-top:6em; text-shadow: 1px 1px #ffffff;">
+            <ul>
+              <li>Viele Daten- &amp; Layerquellen</li>
+              <li>Interaktionen &amp; Steuerelemente</li>
+              <li>Aktiv entwickelt &amp; große Community</li>
+              <li>Gut dokumentiert &amp; viele Beispiele</li>
+              <li>Universell einsetzbar</li>
+            </ul>
+          </div>
+        </section>
+<!--
+        <section id="example-galore" data-background-video="../shared/img/ol-talk/examples.mp4" data-background-size="contain">
+        </section>
+-->
+        <section>
+          <h2>OpenLayers Versionshistorie</h2>
+            <ul>
+              <li>v1.0.0, Mai 2006</li>
+              <li>v2.0.0, August 2006</li>
+              <li>v3.0.0, August 2014</li>
+              <li>v4.0.0, Februar 2017</li>
+              <li>seitdem <a href="https://semver.org/">Semantic Versioning</a></li>
+              <li>v5.0.0, Juni 2018</li>
+              <li>v6.0.0, September 2019</li>
+            </ul>
+        </section>
+
+
+      <section data-background-image="../shared/img/ol-talk/sprinters.jpeg" data-background-size="stretch">
+        <p style="background-color: #ffffff77; color: black; border-radius: 1em; margin-top:5em;">
+          8 Sprinter, 6 Firmen, 4 Nationalitäten <br>
+          (ohne Charles de Gaulle &amp; Ludwig Erhard)<br><br>
+          Danke u.a. dem FOSSGIS für Sponsoring ♥
+        </p>
+      </section>
+
+        <section>
+            <h1>Stand</h1>
+        </section>
+
+        <section>
+            <h2>Stand</h2>
+            <ul>
+                <li>Release: <span class="highlight">ol@6.2.1</span>, 13.02.2020</li>
+                <li class="fragment">Dev: <span class="highlight">ol@dev</span>, The latest and greatest</li>
+                <li>Letzte FOSSGIS: <span class="highlight">ol@5.3.1</span>, 21.02.2019</li>
+                <li>Seitdem 6 Releases</li>
+                <li>&gt; 2.500 Commits</li>
+                <li>&gt; 1.100 ge&auml;nderte Dateien</li>
+                <li><a href="https://github.com/openlayers/openlayers/compare/v5.3.1...v6.2.1">GitHub: compare/v5.3.1...v6.2.1</a></li>
+            </ul>
+        </section>
+
+        <section>
+          <img src="../shared/img/ol-talk/contributors-since-fossgis-2019.png" class="plain stretch">
+        </section>
+
+        <section data-background-image="../shared/img/ol-talk/so-trendy.jpeg" data-background-size="contain">
+          <p style="background-color: #ddff6677; color: black; border-radius: 1em; margin-top: -5em;">
+            Trending on GitHub… for the first time
+          </p>
+        </section>
+
+        <section>
+            <h1>v6.x: Neues und Upgrade</h1>
+        </section>
+
+        <section>
+          <h3>Upgrade von v5.x</h3>
+          <ul>
+            <li>…halb so wild!</li>
+            <li>z.B. <ul class="fragment">
+              <li><span style="text-decoration: line-through;">inherits</span> => ES 2015 <code>class</code></li>
+              <li>interne Kachel-Koordinaten, sollte die wenigsten betreffen</li>
+              <li><code>setCenter</code>, <code>setZoom</code> … verändert <span style="text-decoration: line-through;">🐛 Bugs</span></li>
+            </ul></li>
+            <li class="fragment">Details, siehe <a href="https://github.com/openlayers/openlayers/releases/tag/v6.0.0">Release Notes</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>View-Steuerung</h2>
+          <ul>
+            <li>Standardmäßig nur mehr 1 Welt sichtbar</li>
+            <li>Stufenloses Zoom</li>
+            <li>Extent auf genauen Ausschnitt einschränkbar</li>
+          </ul>
+          <iframe src="./inline-examples/extent-constrained.html" class="plain stretch"></iframe>
+      </section>
+
+        <section>
+          <h2>Intuitive Koordinaten</h2>
+
+          <div>
+            <pre><code data-trim class="js">import {useGeographic} from 'ol/proj';
+
+useGeographic();
+
+geometry.setCoordinates([7.849881, 47.994828]);
+view.fit(geometry);
+
+console.log(view.getCenter());
+// -> [7.849881, 47.994828]</code></pre>
+          </div>
+          <p class="fragment">oder <code>setUserProjection()</code> für beliebige Projektion!</p>
+        </section>
+
+        <section>
+          <h2>DOM Composition</h2>
+          <ul>
+            <li>Unterschiedliche Renderer für eine Karte</li>
+            <li>Neuer WebGL Renderer für Punktdaten</li>
+          </ul>
+          <iframe src="./inline-examples/mixed-renderers.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h2>DOM Composition</h2>
+          <ul>
+            <li><code>render</code> Neues API für eigene Renderer</li>
+            <li><code>className</code> Modifikationsmöglichkeit über CSS</li>
+            <li>Upgrade: Änderungen bei Image/PDF Export nötig</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sonstiges im Code</h2>
+          <ul>
+            <li>Kacheln laden auch während Interaktion/Animation</li>
+            <li>Kein eigener Pointer Events Polyfill mehr</li>
+            <li>Neues <code>Layer#getFeaturesAtPixel</code> API</li>
+            <li>Leichtere Icon-Positionierung mit <code>displacement</code></li>
+            <li>Leichtere Einbettung in scrollbare Seiten</li>
+            <li>Deutlich verbesserte KML Unterstützung</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sonstiges drumherum</h2>
+          <ul>
+            <li>Bessere Gliederung in API Docs</li>
+            <li>Bessere und schnellere Suche in API Docs</li>
+            <li>Tag-Navigation durch Beispiele</li>
+          </ul>
+        </section>
+
+        <section data-background-image="../shared/img/ol-talk/apis.png" data-background-size="contain">
+        </section>
+
+        <section>
+          <h1>Zukünftige Entwicklung</h1>
+        </section>
+
+        <section>
+          <h2>Die schwierigste Folie</h2>
+          <ul class="fragment">
+            <li>Klassiker<ul>
+              <li>Performance</li>
+              <li>Usability</li>
+              <li>neuere Webtechnologien</li>
+            </ul></li>
+            <li>TypeScript ?!</li>
+            <li class="fragment">Community hat das Sagen!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>TypeScript in v6.3</h2>
+          <ul>
+            <li><code>.d.ts</code> Dateien im Package inkludiert</li>
+            <li>Automatisch generiert aus JSDoc Annotations</li>
+            <li>Bereits umgesetzt in <span class="highlight">ol@dev</span></li>
+            <li>Ermöglicht durch Zusammenarbeit mit TypeScript Community</li>
+            <li class="fragment">JSDoc statt TypeScript wird immer beliebter!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Bestimmt mit!</h2>
+          <ul>
+            <li>z.B. wie der uns unbekannte mike-000</li>
+          </ul>
+          <img src="../shared/img/ol-talk/mike.png" alt="" class="plain" />
+        </section>
+
+<!--
+        <section>
+          <h2 style="text-decoration: line-through;">Deprecated API</h2>
+          <ul>
+            <li>z.B. <code>ol.Attribution</code></li>
+            <li>proj4 Integration ohne Überraschungen</li>
+            <li>Sphere Berechnungen mit statischen Funktionen</li>
+            <li>Gleiche Signatur bei Style Funktionen für Layer und Features</li>
+          </ul>
+          <a class="pr-detail" href="https://github.com/openlayers/openlayers/pull/7578">PR #7578</a>
+        </section>
+
+        <section>
+          <h1>aktuelle Entwick&shy;lungen</h1>
+        </section>
+
+        <section>
+          <h2>Ausblick auf v6.0</h2>
+          <ul>
+              <li>Benutzerfreundlicher</li>
+              <li>Live-Editing und Copy/Paste für Beispiele</li>
+              <li>API-Verbesserungen</li>
+              <li>Performance-Verbesserungen</li>
+              <li>Release voraussichtlich noch im März</li>
+          </ul>
+        </section>
+
+        <section>
+            <h2>Named Exports pro Verzeichnis</h2>
+            <div>
+                <pre><code data-trim class="js">import {Map, View} from 'ol';
+import {OSM, VectorTile} from 'ol/source';
+                </code></pre>
+            </div>
+            <p>-> Weniger <code>import</code> Zeilen!</p>
+        </section>
+
+        <section>
+            <h2>Type Checking</h2>
+            <img src="intellisense.gif" class="plain">
+        </section>
+
+        <section>
+            <h2>Entfernung von "Kopfweh-Optionen"</h2>
+            <ul>
+                <li><code>snapToPixel</code>: off während Interaktion, ansonsten on</li>
+                <li>Frame Budget Management statt <code>loadTilesWhileAnimating</code> und <code>loadTilesWhileInteracting</code></li>
+                <li><code>cacheSize</code>: so klein wie möglich, Browser Cache FTW</li>
+            </ul>
+        </section>
+
+        <section>
+          <h2>v6.0: API-Änderungen</h2>
+          <ul>
+              <li>Einfacheres Handling der View Constraints</li>
+              <li>DOM Composition -> ein Canvas pro Layer</li>
+              <li>Internes XYZ Tile Grid</li>
+              <li>WebGL nur noch für Spezialanwendungen</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>v6.0: Performance und Speichermanagement</h2>
+          <ul>
+              <li>Effizienteres Vector Tile Rendering</li>
+              <li>Bessere Nutzung von Render Frames</li>
+              <li>Besseres Tree-Shaking -> kleinere Builds</li>
+              <li>Intelligentere Kachel- und Label-Caches</li>
+          </ul>
+        </section>
+
+        <section>
+            <h2>…viele bunte Slides?</h2>
+            <p>&nbsp;</p>
+            <h2 class="fragment">…1 hab ich noch…</h2>
+        </section>
+
+        <section>
+            <h2>Extent Restriction</h2>
+            <div>
+                <pre><code data-trim class="js">new View({extent: [/** ... */]})</code></pre>
+            </div>
+
+            <iframe src="./ol6-inline-examples/extent-constrained.html" class="plain stretch"></iframe>
+            <span class="pr-detail"><a href="https://github.com/openlayers/openlayers/pull/9137">PR #9137</a><a href="https://github.com/jahow">@jahow</a></span>
+        </section>
+
+        <section data-background-image="really.svg" data-background-size="auto 90%">
+            <h3><a href="https://github.com/openlayers/openlayers/wiki/OpenLayers-6:-call-for-funding,-last-call">OpenLayers 6 Fundraising</a></h2>
+            <ul>
+                <li>Openlayers Development Association
+                  <br><small>camptocamp/swisstopo?</small></li>
+                <li>Über $305.000 sind zusammengekommen!</li>
+                <li>Ziel: Vector Tiles in swisstopos geoadmin.ch</li>
+                <li>Nov. 2018: Code Sprint in Saas Fee</li>
+                <li>530 Commits 10.11.2018 &ndash; 13.3.2019
+                  <br><small>
+                  tschaub: 80, ahocevar: 190, camptocamp: 260 (inkl. <a href="https://npmjs.com/package/ol-mapbox-style">ol-mapbox-style</a>)</small></li>
+            </ul>
+            <br>
+                <center><b>Danke</b></center>
+                <center class="fragment"><b>auch an Tim, Olivier und Boundless</b><br><small>für hunderte zusätzlich geleistete Stunden</small></center>
+        </section>
+
+        <section>
+            <h2>Wovon lebt das Projekt</h2>
+            <ul>
+                <li class="fragment">Persönliches Engagement von Core Committern</li>
+                <li class="fragment">Code-Beiträge von Organisationen und Individuen</li>
+                <li class="fragment">Finanzielle Zuwendungen an Organisationen, die Arbeitszeit für OpenLayers aufwenden</li>
+                <li class="fragment">Jährliche Zuwendung von OSGeo, Spenden über <a href="https://opencollective.com/openlayers">Open Collective</a></li>
+            </ul>
+        </section>
+
+      -->
+
+        <section id="thanks-questions">
+          <h4>Vielen Dank</h4>
+          <hr />
+          <h1 style="font-size:3.0em">Fragen &amp; Anmerkungen?</h1>
+          <hr />
+          <p class="subtle">
+            <a href="#/imprint">Impressum</a>
+          </p>
+        </section>
+
+        <section id="imprint">
+          <h2>Impressum</h2>
+          <h4>Autor</h4>
+
+          <div style="width: 45%; float: left;">
+            <address style="text-align: left">
+              <strong>Marc Jansen</strong><br />
+              <span style="font-size: smaller;">
+                terrestris GmbH &amp; Co. KG<br />
+                K&ouml;lnstr. 99, 53111 Bonn<br />
+                Germany<br />
+                jansen@terrestris.de
+              </span>
+            </address>
+          </div>
+          <div style="width: 45%; float: right;">
+            <address style="text-align: right">
+              <strong>Andreas Hocevar</strong><br />
+              <span style="font-size: smaller;">
+              ahocevar geospatial <br />
+              Grüne Gasse 21d/25, 8020 Graz<br />
+              Austria<br />
+              mail@ahocevar.com
+              </span>
+            </address>
+          </div>
+
+          <h4 style="clear:both;">Lizenz</h4>
+          <p id="license">
+            Diese Folien sind unter <a
+            href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>
+            ver&ouml;ffentlicht.
+          </p>
+          <p>
+            <a href="https://terrestris.github.io/fossgis2019/talks/openlayers.html">Vortragsfolien</a>,
+            <a href="https://terrestris.github.io/fossgis2019/talks/openlayers.pdf">PDF-Version</a>,
+            <a href="https://github.com/terrestris/fossgis2019">git repository</a>
+          </p>
+        </section>
+
+      </div>
+      <!-- END OF SLIDES -->
+
+
+    </div>
+
+    <script src="../shared/reveal.js-3.6.0/lib/js/head.min.js"></script>
+    <script src="../shared/reveal.js-3.6.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/marked.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/markdown.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/notes/notes.js', async: true },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ],
+        history: true
+      });
+      // Reveal.addEventListener('slidechanged', (evt) => {
+      //     const prev = evt.previousSlide || {};
+      //     const curr = evt.currentSlide || {};
+      //     if (prev.id === 'example-galore') {
+      //       stopExampleGalore();
+      //     }
+      //     if (curr.id === 'example-galore') {
+      //       startExampleGalore();
+      //     }
+      // });
+    </script>
+  </body>
+</html>
