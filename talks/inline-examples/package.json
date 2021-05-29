@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "ol": "^6.2.2-dev.1583881025549"
+    "ol": "^6.5.1-dev.1622067211515"
   },
   "scripts": {
-    "start": "parcel serve --no-source-maps --no-cache --no-hmr src/index.html",
-    "build": "parcel build --no-content-hash --no-cache --no-source-maps src/index.html --public-url ./ --dist-dir ./"
+    "start": "parcel serve src/index.html",
+    "build": "parcel build --no-content-hash src/index.html --public-url ./ --dist-dir ./"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.0.0-beta.2"
+    "parcel": "^2.0.0-beta.3"
   }
 }
