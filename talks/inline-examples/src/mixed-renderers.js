@@ -7,9 +7,9 @@ import VectorSource from 'ol/source/Vector';
 import {KML} from 'ol/format';
 
 // @ts-ignore
-import svg from './data/world.svg';
+import svg from 'url:./data/world.svg';
 // @ts-ignore
-import earthquakes from './data/2012_Earthquakes_Mag5.kml';
+import earthquakes from 'url:./data/2012_Earthquakes_Mag5.kml';
 
 var map = new Map({
   target: 'map',
