@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>SHOGun als Basis flexibler WebGIS-Lösungen — Oder: Weder "off-the-shelf" noch "fully handcrafted" | Vortrag auf der FOSSGIS 2021, Online-Event</title>
+    <meta name="author" content="Marc Jansen" />
+    <meta name="author" content="terrestris GmbH &amp; Co. KG" />
+    <meta name="description" content="SHOGun als Basis flexibler WebGIS-Lösungen — Oder: Weder 'off-the-shelf' noch 'fully handcrafted' | Vortrag auf der FOSSGIS 2021, Online-Event" />
+
+    <!--[if lt IE 9]>
+    <script src="../shared/reveal.js-3.6.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/reveal.css">
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/theme/beige.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/css/customized.css" />
+    <link rel="stylesheet" href="../shared/css/animate.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+          '../shared/reveal.js-3.6.0/css/print/pdf.css' :
+          '../shared/reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+
+    <div class="reveal">
+
+      <!-- BEGIN OF SLIDES -->
+      <div class="slides">
+
+        <section id="start"
+          data-background-image="../shared/img/shogun-talk/shogun-logo-full.svg"
+          data-background-size="50% auto">
+          <p>&nbsp;</p>
+        </section>
+
+        <section id="title"
+          data-background-image="../shared/img/shogun-talk/shogun-logo-full-filter.svg"
+          data-background-size="50% auto">
+          <h1 style="font-size: 1.7em; margin-bottom: 1em; margin-top: 0.5em;">SHOGun als Basis flexibler WebGIS-Lösungen</h1>
+          <h1 style="font-size: 0.8em; margin-bottom: 1.5em; margin-top: 7.1em;">Oder: Weder "off-the-shelf" noch "fully handcrafted"</h1>
+          <!-- class="highlight-alt" style="color: white; text-shadow: 0 0 10px #333;" -->
+          <p>
+            <small>Marc Jansen, terrestris GmbH &amp; Co. KG</small>
+          </p>
+          <hr />
+          <p>
+            <small style="text-shadow: 0px 0px 2px #ffffff;">FOSSGIS 2021, Online-Event, 09.06.2021</small>
+          </p>
+        </section>
+
+        <section id="toc">
+          <h2>Gliederung</h2>
+          <ul>
+            <li>&Uuml;ber / Meta</li>
+            <li>Was ist SHOGun? Wie sieht es aus?</li>
+            <li>Standardprodukt vs. Individualentwicklung</li>
+            <li>Produkte als Basis für "partly-handcrafted"</li>
+            <li>Beliebte Zusatzkomponenten</li>
+            <li>Beispiele
+              <ul style="font-size: smaller">
+                <li>Anwendungen zum Gewässermanagement</li>
+                <li>holistische Ökosystemrestauration</li>
+                <li>Verwaltung &amp; Visualisierung von 3D Geodaten</li>
+              </ul>
+            </li>
+            <li>Zusammenfassung / Fazit</li>
+            <!-- SHOGun ein Framework für effiziente Individualentwicklungen -->
+          </ul>
+        </section>
+
+        <section>
+          <h1>&Uuml;ber / Meta</h1>
+        </section>
+
+        <section id="author-marc-jansen">
+          <h2>Marc Jansen</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/mj.jpg" class="plain" width="200"/><br />
+              <small>
+                <a class="email" href="mailto:jansen@terrestris.de">jansen@terrestris.de</a><br />
+                <a class="github" href="https://github.com/marcjansen/">@marcjansen</a><br />
+                <a class="twitter" href="https://twitter.com/selectoid/">@selectoid</a><br />
+              </small><br />
+              <img src="../shared/img/openlayers_de_1ed.png" class="plain" width=100 />
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li>Gesch&auml;ftsf&uuml;hrer <a href="https://www.terrestris.de/">@terrestris</a> &amp; <a href="https://www.mundialis.de/">@mundialis</a></li>
+                  <li>Kernentwickler &amp; PSC OpenLayers</li>
+                  <li>GeoExt, SHOGun, GeoStyler</li>
+                  <!-- <li>Buchautor "OpenLayers"</li> -->
+                  <li>Sprecher &amp; Trainer <br /> national &amp; international</li>
+                  <li>OSGeo Foundation Charter Member</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section id="about-company-terrestris">
+          <h2>terrestris</h2>
+          <div class="split-info">
+            <div class="part" style="width:35%">
+              <img src="../shared/img/terrestris-logo-normal.svg" class="plain" width="400"/>
+              <br /><small>
+              <a class="email" href="mailto:info@terrestris.de">info@terrestris.de</a><br />
+              <a class="github" href="https://github.com/terrestris/">@terrestris</a><br />
+              <a class="twitter" href="https://twitter.com/terrestrisde/">@terrestrisde</a>
+            </small>
+            </div>
+            <div class="part" style="width:60%">
+              <div class="enumeration">
+                <ul>
+                  <li><a href="https://www.terrestris.de/">terrestris.de</a></li>
+                  <li>OpenSource GIS aus Bonn</li>
+                  <li>Entwicklung, Projekte &amp; Support/Schulung</li>
+                  <li>Beratung, Planung, Implementierung &amp; Wartung</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <!-- <section id="were-hiring">
+          <h3>Teil des Teams werden?</h3>
+          <div id="teampic"></div>
+          <ul>
+            <li>Softwareentwickler/in</li>
+            <li>GIS Consultant</li>
+            <li>Praktikanten / betreute Abschlussarbeiten</li>
+          </ul>
+          <p>
+            Details gerne am terrestris Stand
+          </p>
+        </section> -->
+
+        <section>
+          <h2>Was ist SHOGun? Wie sieht es aus?</h2>
+        </section>
+
+        <section>
+          <h2>Standardprodukt vs. Individualentwicklung</h2>
+        </section>
+
+        <section>
+          <h2>Produkte als Basis für "partly-handcrafted"</h2>
+        </section>
+
+        <section>
+          <h2>Beliebte Zusatzkomponenten</h2>
+        </section>
+        
+        <section>
+          <h2>Beispiele</h2>
+        </section>
+
+        <section>
+          <h3>Anwendungen zum Gewässermanagement</h3>
+        </section>
+
+        <section>
+          <h3>holistische Ökosystemrestauration</h3>
+        </section>
+
+        <section>
+          <h3>Verwaltung &amp; Visualisierung von 3D Geodaten</h3>
+        </section>
+
+        <section>
+          <h2>Zusammenfassung / Fazit</h2>
+        </section>
+
+        <section id="thanks-questions">
+          <h4>Vielen Dank</h4>
+          <hr />
+          <h1 style="font-size:3.0em">Fragen &amp; Anmerkungen?</h1>
+          <hr />
+          <p class="subtle">
+            <a href="#/imprint">Impressum</a>
+          </p>
+        </section>
+
+        <section id="imprint">
+          <h2>Impressum</h2>
+          <h4>Autor</h4>
+
+          <div>
+            <address style="text-align: center">
+              <strong>Marc Jansen</strong><br />
+              <span style="font-size: 0.6em; line-height: 0.65em;">
+                terrestris GmbH &amp; Co. KG, K&ouml;lnstra&szlig;e 99, 53111 Bonn<br />
+                <a href="mailto:jansen@terrestris.de">jansen@terrestris.de</a>
+              </span>
+            </address>
+          </div>
+
+          <h4 style="margin-top: 1.2em;clear:both;">Lizenz</h4>
+          <p id="license">
+            Diese Folien sind unter <a
+            href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA</a>
+            ver&ouml;ffentlicht.
+          </p>
+          <p>
+            <a href="https://terrestris.github.io/fossgis2021/talks/shogun.html">Vortragsfolien</a>,
+            <a href="https://terrestris.github.io/fossgis2021/talks/shogun.pdf">PDF-Version</a>,
+            <a href="https://github.com/terrestris/fossgis2021">git repository</a>
+          </p>
+        </section>
+
+      </div>
+      <!-- END OF SLIDES -->
+
+    </div>
+
+    <script src="../shared/reveal.js-3.6.0/lib/js/head.min.js"></script>
+    <script src="../shared/reveal.js-3.6.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/marked.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/markdown.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/notes/notes.js', async: true },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ],
+        history: true
+      });
+      // Reveal.addEventListener('slidechanged', (evt) => {
+      //     const prev = evt.previousSlide || {};
+      //     const curr = evt.currentSlide || {};
+      //     if (prev.id === 'example-galore') {
+      //       stopExampleGalore();
+      //     }
+      //     if (curr.id === 'example-galore') {
+      //       startExampleGalore();
+      //     }
+      // });
+    </script>
+  </body>
+</html>
