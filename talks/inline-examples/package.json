@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "ol": "^6.5.1-dev.1622067211515"
+    "ol": "^6.5.1-dev.1622067211515",
+    "ol-mapbox-style": "^6.3.2"
   },
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "parcel build --no-content-hash src/index.html --public-url ./ --dist-dir ./"
+    "start": "parcel serve src/*.html",
+    "build": "parcel build --no-content-hash src/*.html --public-url ./ --dist-dir ./"
   },
   "author": "",
   "license": "ISC",

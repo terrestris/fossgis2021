@@ -80,7 +80,7 @@ var vector = new VectorLayer({
 });
 
 var view = new View({
-  center: fromLonLat([15.4409210, 47.1530110]),
+  center: fromLonLat([15.4370540, 47.1427290]),
   zoom: 10,
   constrainRotation: false
 });
