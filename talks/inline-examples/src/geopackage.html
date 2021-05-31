@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vector Tiles</title>
+</head>
+<style>
+    html, body, .map {
+      font-family: sans-serif;
+      margin: 0 auto;
+      width: 100%;
+      height: calc(100% - 10px);
+    }
+  </style>
+</head>
+<body>
+  <div id="map" class="map">
+    <label for="gpkg">GeoPackage:</label>
+    <input id="gpkg" name="gpkg" type="file"></input>
+  </div>
+  <script src="geopackage.js"></script>
+</body>
+</html>

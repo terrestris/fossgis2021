@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "@ngageoint/geopackage": "^3.0.9",
     "ol": "^6.5.1-dev.1622067211515",
     "ol-hashed": "^2.0.0",
     "ol-mapbox-style": "^6.3.2",
@@ -10,7 +11,7 @@
   },
   "scripts": {
     "start": "parcel serve src/*.html",
-    "build": "parcel build --no-content-hash src/*.html --public-url ./ --dist-dir ./"
+    "build": "parcel build --no-content-hash src/*.html --no-scope-hoist --public-url ./ --dist-dir ./"
   },
   "author": "",
   "license": "ISC",

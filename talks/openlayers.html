@@ -154,6 +154,7 @@
               <div class="enumeration">
                 <ul>
                   <li>OpenLayers Kernentwickler und im Steering Committee</lI>
+                  <li>Proj4js Maintainer und Entwickler</li>
                   <li>ol-mapbox-style Maintainer und Entwickler</li>
                   <li>Professioneller OpenLayers Support</li>
                 </ul>
@@ -275,16 +276,60 @@ olms('map', 'https://mymap.com/mystyle.json');</code></pre>
 
         <section>
           <h2>Vector Tiles</h2>
-          <p>Nicht vom Hype blenden lassen!</p>
           <iframe src="./inline-examples/basemap.html" class="plain stretch"></iframe>
         </section>
 
         <section>
-          <h2>Shapefile D&amp;D</h2>
+          <h2>GeoPackage</h2>
           <ul>
-            <li>TODO Hoci</li>
+            <li>Mit <a href="https://npmjs.com/package/@ngageoint/geopackage">@ngageoint/geopackage</a></li>
+            <li>Vorsicht wegen potenziell großer Dateien</li>
+            <li>Drag & Drop oder File Input</li>
+            <li>Sinnvoll aber z.B. in Offline-Umgebungen</li>
           </ul>
-          <iframe src="./inline-examples/mixed-renderers.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h2>GeoPackage</h2>
+          <ul>
+            <li>Vektordaten am einfachsten über GeoJSON</li>
+          </ul>
+          <pre><code style="font-size: 17px;" class="javascript">const featureDao = geoPackage.getFeatureDao(featureTableName);
+const geojson = {
+  type: 'FeatureCollection',
+  features: []
+}
+const iterator = featureDao.queryForGeoJSONIndexedFeaturesWithBoundingBox(bbox);
+for (const feature of iterator) {
+  feature.type = 'Feature';
+  geojson.features.push(feature);
+};
+const vectorSource = new VectorSource({
+  format: new GeoJSON(),
+  url: `data:application/json;charset=utf-8,${JSON.stringify(geojson)}`
+});</code></pre>
+        </section>
+
+        <section>
+          <h2>GeoPackage</h2>
+          <ul>
+            <li>Tile-Pyramiden mit einer <code>tileLoadFunction</code></li>
+          </ul>
+          <pre><code style="font-size: 17px;" class="javascript">const tileDao = geoPackage.getTileDao(tileTableName);
+const gpr = new GeoPackageTileRetriever(tileDao, 256, 256);
+const source = new XYZ({
+  minZoom: tileDao.minWebMapZoom,
+  maxZoom: tileDao.maxWebMapZoom,
+  tileUrlFunction: tileCoord => tileCoord,
+  tileLoadFunction(tile, [z, x, y]) {
+    gpr.getTile(x, y, z).then(dataUri => tile.getImage().src = dataUri);
+  }
+});</code></pre>
+        </section>
+
+        <section>
+          <h2>GeoPackage</h2>
+          <iframe src="./inline-examples/geopackage.html" class="plain stretch"></iframe>
         </section>
 
         <section>
@@ -401,6 +446,7 @@ olms('map', 'https://mymap.com/mystyle.json');</code></pre>
                   <li>&rArr; COG Support, s.o.</li>
                   <li><a href="https://github.com/openlayers/openlayers/pull/10963">OGC API</a></li>
                   <li><a href="https://github.com/openlayers/openlayers/pull/12223">(noch) besseres Typing &amp; API-docs</a></li>
+                  <li>Bessere Node.js Integration</li>
                   <li>+ Eure Beiträge 👼</li>
                   <li>…</li>
                 </ul>
