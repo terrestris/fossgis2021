@@ -333,11 +333,33 @@ const source = new XYZ({
         </section>
 
         <section>
-          <h2>Raster Analyse/Manipulation</h2>
+          <h2>Raster Analyse</h2>
           <ul>
-            <li>TODO Hoci</li>
+            <li>Raster Source mit einer <code>operation</code></li>
           </ul>
-          <iframe src="./inline-examples/mixed-renderers.html" class="plain stretch"></iframe>
+          <pre><code style="font-size: 17px;" class="javascript">function flood(pixels, data) {
+  const pixel = pixels[0];
+  if (pixel[3]) {
+    const height =
+      -10000 + (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) * 0.1;
+    if (height <= data.level) {
+      pixel[0] = 134; pixel[1] = 203; pixel[2] = 249; pixel[3] = 255;
+    } else {
+      pixel[3] = 0;
+    }
+  }
+  return pixel;
+}
+
+const raster = new RasterSource({
+  sources: [elevation],
+  operation: flood,
+});</code></pre>
+        </section>
+
+        <section>
+          <h2>Raster Analyse</h2>
+          <iframe src="./inline-examples/sea-level.html" class="plain stretch"></iframe>
         </section>
 
         <section>
