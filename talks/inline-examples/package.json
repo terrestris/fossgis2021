@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "ol": "^6.5.1-dev.1622067211515",
+    "ol-hashed": "^2.0.0",
     "ol-mapbox-style": "^6.3.2",
     "proj4": "^2.7.2"
   },
