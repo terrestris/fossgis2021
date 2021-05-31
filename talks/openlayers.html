@@ -206,17 +206,87 @@
         <section>
           <h2>Immediate Rendering</h2>
           <ul>
-            <li>TODO Hoci</li>
+            <li>Zugriff auf den Render Context des Layers</li>
+            <li>Zeichnen mit OpenLayers Geometrien und Styles</li>
+            <li>Koordinatensystem der View</li>
           </ul>
-          <iframe src="./inline-examples/mixed-renderers.html" class="plain stretch"></iframe>
+          <pre><code class="javascript">import toContext from 'ol/render';
+layer.on('postrender', event => {
+  const immediate = getVectorContext(event);
+  immediate.setImageStyle(myCircleStyle);
+  immediate.drawPoint(myPointGeometry);
+});</code></pre>
         </section>
 
         <section>
-          <h2>VectorTiles and more</h2>
+          <h2>Immediate Rendering</h2>
           <ul>
-            <li>TODO Hoci</li>
+            <li>Zugriff auf den Canvas Context des Layers</li>
+            <li>Zeichnen mit dem Canvas 2D API</li>
+            <li>Pixel-Koordinatensystem des Canvas</li>
           </ul>
-          <iframe src="./inline-examples/mixed-renderers.html" class="plain stretch"></iframe>
+          <pre><code class="javascript">layer.on('postrender', event => {
+  const context = event.context;
+  const canvas = context.canvas;
+  const center = [canvas.width / 2, canvas.height / 2];
+  context.beginPath();
+  context.moveTo(center[0] + 50, center[1] - 50);
+  context.lineTo(center[0] - 50, center[1] - 50);
+  context.lineTo(center[0] - 50, center[1] + 50);
+  context.lineTo(center[0] + 50, center[1] + 50);
+  context.closePath();
+  context.fillStyle = 'rgba(50,170,50,0.5)';
+  context.fill();
+});</code></pre>
+        </section>
+
+        <section>
+          <h2>Immediate Rendering</h2>
+          <iframe src="./inline-examples/bike-track.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h2>Vector Tiles etc.</h2>
+          <ul>
+            <li>Ideal für thematische Karten</li>
+            <li>Mapbox Vector Tiles und Mapbox Style</li>
+          </ul>
+          <pre><code class="javascript">import MVT from 'ol/format/MVT';
+import createStyle from 'ol-mapbox-style/dist/stylefunction';
+
+const bodenkarte = new VectorTileLayer({
+  source: new VectorTileSource({
+    format: new MVT(),
+    url: myVectorTileServiceUrl
+  })
+});
+
+bodenkarte.setStyle(
+  createStyle(bodenkarte, myMapboxStyle, 'bodenkarte-tiles')
+);</code></pre>
+        </section>
+
+        <section>
+          <h2>Vector Tiles</h2>
+          <iframe src="./inline-examples/bodenkarte.html" class="plain stretch"></iframe>
+        </section>
+
+        <section>
+          <h2>Mapbox Style</h2>
+          <ul>
+            <li>Nicht nur für Vector Tile Layer</li>
+            <li>Beschreibt eine komplette Karte (Center, Zoom, Layer, Styles)</li>
+            <li>In OpenLayers verfügbar mit <a href="https://npmjs.com/package/ol-mapbox-style">ol-mapbox-style</a></li>
+          </ul>
+          <pre><code class="javascript">import olms from 'ol-mapbox-style';
+
+olms('map', 'https://mymap.com/mystyle.json');</code></pre>
+        </section>
+
+        <section>
+          <h2>Vector Tiles</h2>
+          <p>Nicht vom Hype blenden lassen!</p>
+          <iframe src="./inline-examples/basemap.html" class="plain stretch"></iframe>
         </section>
 
         <section>
@@ -310,7 +380,8 @@
             <div class="part" style="width:60%">
               <div class="enumeration">
                 <ul>
-                  <li>TODO Brainstorm</li>
+                  <li>OGC API – Tiles</li>
+                  <li>geotiff.js Integration</li>
                 </ul>
               </div>
             </div>

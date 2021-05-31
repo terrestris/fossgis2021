@@ -22,7 +22,6 @@ olms(
   map.setView(
     new View({
       minZoom: 7,
-      maxZoom: 16,
       zoom: 15,
       center: fromLonLat([15.437054, 47.142729])
     })
