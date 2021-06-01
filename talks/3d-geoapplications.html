@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>3D-Geoapplikationen mit CesiumJS</title>
+    <meta name="author" content="Michael Holthausen" />
+    <meta name="author" content="terrestris GmbH &amp; Co. KG" />
+    <meta
+      name="description"
+      content="3D-Geoapplikationen mit CesiumJS - Daten, Einsatzmöglichkeiten und Spezifikationen | Vortrag auf der FOSSGIS 2021, Rapperswil"
+    />
+
+    <!--[if lt IE 9]>
+      <script src="../shared/reveal.js-3.6.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="../shared/reveal.js-3.6.0/css/theme/beige.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Merriweather"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/customized.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      rel="stylesheet"
+      href="../shared/reveal.js-3.6.0/lib/css/zenburn.css"
+    />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? '../shared/reveal.js-3.6.0/css/print/pdf.css'
+        : '../shared/reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- BEGIN OF SLIDES -->
+      <div class="slides">
+        <section
+          id="start"
+          data-background-image="../shared/img/geostyler-talk/geostyler_logo.svg"
+          data-background-size="auto 90%"
+        >
+          <p>&nbsp;</p>
+        </section>
+        <section
+          id="title"
+          data-background-image="../shared/img/geostyler-talk/geostyler_logo_filter.svg"
+          data-background-size="auto 90%"
+        >
+          <h2>3D-Geoapplikationen mit CesiumJS</h2>
+          <h3>Daten, Einsatzmöglichkeiten und Spezifikationen</h3>
+          <br />
+          <p>
+            <small>Michael Holthausen, terrestris GmbH & Co. KG</small>
+          </p>
+          <hr />
+          <p>
+            <small>FOSSGIS 2021, Rapperswil 08.06.2021</small>
+          </p>
+        </section>
+
+        <section id="toc">
+          <h2>Gliederung</h2>
+          <ul>
+            <li>Über&hellip;</li>
+            <li>Was ist CesiumJS?</li>
+            <li>Anforderungen</li>
+            <li>Aktueller Entwicklungsstand</li>
+            <li>Standards & 3D Tiles</li>
+            <li>Verfügbarkeit von Daten</li>
+            <li>Einsatzmöglichkeiten & Features</li>
+          </ul>
+        </section>
+
+        <section id="about-author-michael-holthausen">
+          <h2>Michael Holthausen</h2>
+          <div class="split-info">
+            <div class="part" style="width: 35%">
+              <img src="../shared/img/mh.jpg" class="plain" width="200" /><br />
+              <small>
+                <a class="email" href="mailto:holthausen@terrestris.de"
+                  >holthausen@terrestris.de</a
+                ><br />
+                <a class="github" href="https://github.com/mholthausen/"
+                  >@mholthausen</a
+                ><br /> </small
+              ><br />
+            </div>
+            <div class="part" style="width: 60%">
+              <div class="enumeration">
+                <ul>
+                  <li>M. Sc. Geographie</li>
+                  <li>Developer @terrestris</li>
+                  <li>Anwendungsentwickler</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both"></div>
+        </section>
+
+        <section id="about-company-terrestris">
+          <h2>terrestris</h2>
+          <div class="split-info">
+            <div class="part" style="width: 35%">
+              <img
+                src="../shared/img/terrestris-logo-normal.svg"
+                class="plain"
+                width="400"
+              />
+              <br /><small>
+                <a class="email" href="mailto:info@terrestris.de"
+                  >info@terrestris.de</a
+                ><br />
+                <a class="github" href="https://github.com/terrestris/"
+                  >@terrestris</a
+                ><br />
+                <a class="twitter" href="https://twitter.com/terrestrisde/"
+                  >@terrestrisde</a
+                >
+              </small>
+            </div>
+            <div class="part" style="width: 60%">
+              <div class="enumeration">
+                <ul>
+                  <li>
+                    <a href="https://www.terrestris.de/">terrestris.de</a>
+                  </li>
+                  <li>OpenSource GIS aus Bonn</li>
+                  <li>Entwicklung, Projekte &amp; Support/Schulung</li>
+                  <li>Beratung, Planung, Implementierung &amp; Wartung</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both"></div>
+        </section>
+
+        <section>
+          <h1>Was ist CesiumJS?</h1>
+        </section>
+
+        <section>TODO<br /></section>
+
+        <section id="thanks-questions">
+          <h4>Vielen Dank!</h4>
+          <hr />
+          <h1 style="font-size: 3em">Fragen &amp; Anmerkungen?</h1>
+          <hr />
+          <p class="subtle">
+            <a href="#/imprint">Impressum</a>
+          </p>
+        </section>
+
+        <section id="imprint">
+          <h2>Impressum</h2>
+          <h4>Autor</h4>
+          <div style="width: 45%; float: left">
+            <address style="text-align: left">
+              <strong>Michael Holthausen</strong><br />
+              <span style="font-size: smaller">
+                terrestris GmbH &amp; Co. KG<br />
+                Kölnstr. 99<br />
+                53111 Bonn<br />
+                holthausen@terrestris.de
+              </span>
+            </address>
+          </div>
+          <h4 style="clear: both">Lizenz</h4>
+          <p id="license">
+            Diese Folien sind unter
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+              >CC BY-SA</a
+            >
+            veröffentlicht.
+          </p>
+          <p>
+            <a
+              href="https://terrestris.github.io/fossgis2021/talks/3d-geoapplications.html#/start"
+              >Vortragsfolien</a
+            >,
+            <a
+              href="https://terrestris.github.io/fossgis2021/talks/3d-geoapplications.pdf"
+              >PDF-Version</a
+            >,
+            <a href="https://github.com/terrestris/fossgis2021"
+              >git repository</a
+            >
+          </p>
+        </section>
+      </div>
+      <!-- END OF SLIDES -->
+    </div>
+
+    <script src="../shared/reveal.js-3.6.0/lib/js/head.min.js"></script>
+    <script src="../shared/reveal.js-3.6.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js-3.6.0#configuration
+      // - https://github.com/hakimel/reveal.js-3.6.0#dependencies
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        dependencies: [
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/marked.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/markdown.js' },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/notes/notes.js',
+            async: true
+          },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/highlight/highlight.js',
+            async: true,
+            callback: function () {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
