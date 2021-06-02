@@ -153,7 +153,32 @@
         </section> -->
 
         <section>
-          <h2>Was ist SHOGun? Wie sieht es aus?</h2>
+          <h2>Was ist SHOGun?</h2>
+        </section>
+
+        <section>
+          <ul>
+            <li>Framework zur Erstellung von GDIs</li>
+            <li>Bestehend aus mehreren OS-Einzelkomponenten</li>
+            <li>u.a.: PostGIS, GeoServer, Keycloak</li>
+            <li>Backend-Eigenentwicklung auf Basis von Spring-Boot, dient als Moderator zwischen den Komponenten sowie Bereitstellung des Clients: SHOGun-Boot (Name ist Art in progress)</li>
+            <li>Frontend-Eigenentwicklung auf Basis von React und OpenLayers, hochgradig flexibel und austauschbar</li>
+          </ul>
+        </section>
+
+        <section>
+           TODO Architekturksizze
+        </section>
+
+        <section>
+          Kernfunktionen
+          <ul>
+            <li>Bereitstellung von typischen Konfigurationselementen in GDIs (Applikationen, Instanzen, Layer etc.)</li>
+            <li>REST- und GraphQL Schnittstellen für selbige</li>
+            <li>Absicherung dieser Elemente</li>
+            <li>Anspruch: Besinnung auf Kernelemente und hohe Flexibilität (Stichwort: Erweiterbarkeit)</li>
+          </ul>
+          vgl. auch https://terrestris.github.io/shogun/
         </section>
 
         <section>
@@ -167,9 +192,35 @@
         <section>
           <h2>Beliebte Zusatzkomponenten</h2>
         </section>
-        
+      
+        <section>
+          <ul>
+            <li>GNOS</li>
+            <li>LDAP</li>
+            <li>Actinia</li>
+            <li>GeoStyler</li>
+            <li>GeoServer-Plugins</li>
+            <li>…</li>
+          </ul>
+        </section>
+
         <section>
           <h2>Beispiele</h2>
+        </section>
+
+        <section>
+          <h3>Data-Retrieval Geodatenatlas</h3>
+          IHK noch als Beispiel mit reinnehmen?
+        </section>
+
+        <section>
+          <h4>Besonderheiten</h4>
+          <ul>
+            <li>Geringe Anpassung an Basisarchitektur, Ziel: Verwaltung von Kartenapplikationen und Kartendiensten</li>
+            <li>Einfacher WebClient auf Bassis von react-geo</li>
+            <li>Anbindung an unternehmensweites LDAP</li>
+            <li>Absicherung der Dienste über GeoFence</li>
+          </ul>
         </section>
 
         <section>
@@ -177,11 +228,44 @@
         </section>
 
         <section>
+          <h4>Besonderheiten</h4>
+          <ul>
+            <li>Extrem komplexe Fachanwendung, übliche Anwendungen von GDIs (Instanzenverwaltung etc.) nicht benötigt</li>
+            <li>Massive Erweiterung auf Basis von SHOGun-Boot</li>
+            <li>Anbindung an Fachschnittstellen</li>
+            <li>Dynmaische UIs (Stichwort FormConfig Parser)</li>
+            <li>Deployment über Kubernetes, Skalierbarkeit</li>
+          </ul>
+        </section>
+
+        <section>
           <h3>holistische Ökosystemrestauration</h3>
         </section>
 
         <section>
+          <h4>Besonderheiten</h4>
+          <ul>
+            <li>Anbindung Actinia</li>
+            <li>Moderation der Prozesspipelines zwischen Actinia und GeoServer</li>
+            <li>Eigene Benutzerverwaltung</li>
+          </ul>
+        </section>
+
+        <section>
+            <img src="../shared/img/shogun-talk/hermosa-architecture.png" class="plain" width="800"/><br />
+        </section>
+
+        <section>
           <h3>Verwaltung &amp; Visualisierung von 3D Geodaten</h3>
+        </section>
+
+        <section>
+          <h4>Besonderheiten</h4>
+          <ul>
+            <li>Keine explizite Nutzer- oder Applikationssteuerung</li>
+            <li>Komplett losgelöster Client (basierend auf React und CesiumJS)</li>
+            <li>Kernaufgabe: Moderation von Datenaufbereitungspipelines (3D Tiles) / Jobverwaltung</li>
+          </ul>
         </section>
 
         <section>
