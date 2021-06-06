@@ -272,5 +272,20 @@ span.nope {
   right: 1em;
 }
 a.img-attribution {
-  font-size: small
+  font-size: small;
+  display: block;
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+span.questionmark-overlay::before {
+  content: "?";
+  color: white;
+  text-shadow:darkred 1px 1px 5px;
+  font-size: 10em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
 }
