@@ -271,6 +271,7 @@ span.nope {
   bottom: 0;
   right: 1em;
 }
+span.img-attribution,
 a.img-attribution {
   font-size: small;
   display: block;
