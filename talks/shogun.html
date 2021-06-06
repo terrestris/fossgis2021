@@ -139,6 +139,12 @@
           <div style="clear:both"></div>
         </section>
 
+        <section id="were-hiring">
+          <h3>Teil des Teams werden?</h3>
+          <h1 style="font-size: 2.2em; margin: 1em 0;">mundialis &amp; terrestris suchen Verstärkung</h1>
+          <h3>👉 Kontaktiert uns 🚀</h3>
+        </section>
+
         <section id="about-talk">
           <h2>Was man von diesem Talk erwarten darf</h2>
           <ul>
@@ -222,6 +228,10 @@
         </section>
 
         <section>
+          <img src="../shared/img/shogun-talk/hermosa-architecture.png" class="plain" width="800"/><br />
+      </section>
+
+        <section>
           <h2>Kernfunktionen</h2>
           <ul>
             <li>Bereitstellung von typischen Konfigurationselementen in GDIs (Applikationen, Instanzen, Layer etc.)</li>
@@ -234,16 +244,94 @@
 
         <section>
           <h2>Standardprodukt vs. Individualentwicklung</h2>
+          <h4>Commercial off-the-shelf (COTS) vs. Custom</h4>
         </section>
 
         <section>
-          <h2></h2>
+          <h2>Standardprodukt vs. Individualentwicklung</h2>
           <img src="../shared/img/shogun-talk/off-the-shelf-vs-custom.png" class="stretch plain"/>
           <a href="https://codeit.us/blog/off-the-shelf-vs-custom-software" class="img-attribution">Bild: &copy; Code IT</a>
         </section>
 
         <section>
+          <h2>GDI Domaine als Kern</h2>
+          <ul>
+            <li>Einige Gemeinsamkeiten</li>
+            <li>Jedoch unserer Erfahrung nach auch
+              <ul>
+                <li>Immer wieder Spezifika</li>
+                <li>Projektgetrieben</li>
+                <li>hohe Individualität gewünscht</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Lösung?</h2>
+        </section>
+
+        <section>
           <h2>Produkte als Basis für "partly-handcrafted"</h2>
+        </section>
+
+        <section>
+          <h2>Kernaufgabe teilen…</h2>
+          <ul>
+            <li>Entitätenverwaltung (Spring)</li>
+            <li>Kartogr. Darstellung (OpenLayers)</li>
+            <li>UI und Clientseitige Logik (React)</li>
+            <li>Datenbankzugriffe (Hibernate)</li>
+            <li>Verwaltung (u.a. KeyCloak)</li>
+            <li>…</li>
+          </ul>
+          <h3>… und geschickt zusammensetzen</h3>
+        </section>
+
+        <section>
+          <h2>OSS Produkte</h2>
+          <div class="split-info">
+            <div class="part" style="width:47%">
+              <div class="enumeration">
+                <ul>
+                  <li>SHOGun (Java/Spring)</li>
+                  <li>react-geo-baseclient</li>
+                  <li>shogun-admin</li>
+                  <li>react-geo</li>
+                  <li>OpenLayers</li>
+                  <li>ol-util</li>
+                  <li>base-util</li>
+                  <li>react-util</li>
+                  <li>keycloak-event-listener-shogun</li>
+                </ul>
+              </div>
+            </div>
+            <div class="part" style="width:47">
+              <div class="enumeration">
+                <ul>
+                  <li>GeoExt</li>
+                  <li>BasiGX</li>
+                  <li>GeoStyler +x</li>
+                  <li>own Docker images, plus</li>
+                  <li>distinct-wps</li>
+                  <li>terrestris-filterfunctions</li>
+                  <li>terrestris-utils</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both"></div>
+        </section>
+
+        <section>
+          <h2>Plus oft "handcrafted"</h2>
+          <ul>
+            <li>Verbindungscode</li>
+            <li>custom Businesslogik</li>
+            <li>Ausgestaltung</li>
+            <li>Emulation von Vorgängerverhalten</li>
+          </ul>
+          <h3 style="margin-top: 1em;">&rarr; Projektgetriebener Rückfluss in Produkte</h3>
         </section>
 
         <section>
@@ -257,6 +345,8 @@
             <li>Actinia</li>
             <li>GeoStyler</li>
             <li>GeoServer-Plugins</li>
+            <li>MapFish Print</li>
+            <li>3rd Party Services<li>
             <li>…</li>
           </ul>
         </section>
@@ -265,6 +355,7 @@
           <h2>Beispiele</h2>
         </section>
 
+<!--
         <section>
           <h3>Data-Retrieval Geodatenatlas</h3>
           IHK noch als Beispiel mit reinnehmen?
@@ -279,6 +370,7 @@
             <li>Absicherung der Dienste über GeoFence</li>
           </ul>
         </section>
+-->
 
         <section>
           <h3>Anwendungen zum Gewässermanagement</h3>
@@ -290,7 +382,7 @@
             <li>Extrem komplexe Fachanwendung, übliche Anwendungen von GDIs (Instanzenverwaltung etc.) nicht benötigt</li>
             <li>Massive Erweiterung auf Basis von SHOGun-Boot</li>
             <li>Anbindung an Fachschnittstellen</li>
-            <li>Dynmaische UIs (Stichwort FormConfig Parser)</li>
+            <li>Dynamische UIs (Stichwort FormConfig Parser)</li>
             <li>Deployment über Kubernetes, Skalierbarkeit</li>
           </ul>
         </section>
@@ -328,6 +420,13 @@
         <section>
           <h2>Zusammenfassung / Fazit</h2>
         </section>
+
+        <!-- <section>
+          - serh viel klein klein, aber auch Meta-packages und dockjer für Quickstarts
+          - Eigene Entwicklungszyklen und einfacherer Partizipation
+          - Mehr Sicherheit in Erwaeiterbarkleit und Zukunftsfähigkeit
+          - Konzentration auf Schnittstellen / Microservices Mehr Flexibilität und weniger Vebdor Lock in
+        </section> -->
 
         <section id="thanks-questions">
           <h4>Vielen Dank</h4>
