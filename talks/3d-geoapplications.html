@@ -154,10 +154,284 @@
         </section>
 
         <section>
-          <h1>Was ist CesiumJS?</h1>
+          <h1>Allgemeiner Überblick</h1>
         </section>
 
-        <section>TODO<br /></section>
+        <section>
+          <h2>Was ist CesiumJS?</h2>
+        </section>
+
+        <section>
+          <b>Virtueller Globus</b>
+          <ul>
+            <li class="fragment">
+              3D Software-Modell zur Darstellung der Erde oder anderer
+              Himmelskörper
+            </li>
+            <li class="fragment">frei in einer virtuellen Umgebung bewegen</li>
+            <li class="fragment">jeden beliebigen Punkt ansteuern</li>
+            <li class="fragment">Blickwinkel ändern</li>
+            <li class="fragment">
+              über unterschiedliche Skalierung hinein und heraus zu zoomen
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Virtueller Globus</b><br />
+          <ul>
+            <li class="fragment">vereinfachte Darstellung der realen Welt</li>
+            <li class="fragment">durch die Zoomfunktion genauere Details</li>
+            <li class="fragment">
+              Darstellung von aufbereiteten Daten in Kartenebenen
+            </li>
+            <li class="fragment">lokal oder externer Server</li>
+          </ul>
+          <br />
+          TODO: Bild herkömmlicher Globus einbinden
+        </section>
+
+        <section>
+          <b>CesiumJS</b><br />
+          <iframe
+            tabindex="0"
+            allowfullscreen=""
+            loading="lazy"
+            src="https://sandcastle.cesium.com/standalone.html#c=bY9Pa8MwDMW/ivGpgyGz6+qGQq+FHQY7+aI6Wmuq2MFSUtJPvyS9jK26vaf3058RqxkT3aiancl0MweSNHTwtXqbYOOqDyUrpkw12JdtyPbVetGJqQnZrLVPXV+qmqHyBsApdT2jkrjTEK+kEEUWcIl69xv1bRpNandPNpnIKDJ3vgfmz3SnYBvv5vw/lAu2KZ8/RqqM0xK7vDXHhwkA3s3yOaml8Anrn8nzfxfVXt6dE8xtRFEmeBwIsXTujMxUJ/cD"
+            width="640"
+            height="480"
+            class="overlaid-iframe__StyledIframe-sc-14s1ku7-1 hNtyZL"
+          ></iframe>
+        </section>
+
+        <section>
+          <b>CesiumJS</b><br />
+          <ul>
+            <li>Apache 2.0 Lizenz</li>
+            <li>Veröffentlichung über GitHub & npm</li>
+            <li>Partizipation möglich</li>
+            <li>Community-Support über Forum</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>CesiumJS</b>
+          <ul>
+            <li>JavaScript, WebGL, HTML 5</li>
+            <li class="fragment">
+              WebGL TODO: WebGL Logo
+              <ul>
+                <li>hardwarebeschleunigtes 3D-Rendering mit JavaScript</li>
+                <li>basiert auf der bewährten Grafik-API OpenGL</li>
+                <li>alle Desktopbrowser</li>
+                <li>die meisten mobilen Browser</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Anforderungen des Browsers</h2>
+        </section>
+
+        <section>TODO: Auflistung aller modernen Browsers<br /></section>
+
+        <section>
+          <h2>Aktueller Entwicklungsstand der Bibliothek</h2>
+        </section>
+
+        <section>
+          <b>Highlights der vergangenen Versionen</b><br />
+          <ul>
+            <li>Cesium for Unreal Engine</li>
+            <li>grundlegende Unterstützung für das Rendering im Untergrund</li>
+            <li>backFaceCulling</li>
+            <li>Migration nach ES6 Module</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>API Funktionen</h2>
+        </section>
+
+        <section>
+          <b>API Funktionen</b><br />
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                href="https://cesium.com/docs/cesiumjs-ref-doc/"
+                >Cesium Documentation</a
+              >
+            </li>
+            <li>CZML</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>CZML (Cesium Language)</b>
+          <ul>
+            <li>JSON basiertes Format</li>
+            <li>Punkte, Flächen, Modelle und andere grafische Grundelemente</li>
+            <li>
+              Beschreibung einer raumzeitlich-dynamischen grafischen Szene
+            </li>
+            <li>Effizientes Streaming &amp; einfach zu parsen</li>
+            <li>Hauptsächlich zur Anzeige im Browser über CesiumJS</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium ION</b>
+          <ul>
+            <li>cloudbasierter Streaming-Dienst für CesiumJS</li>
+            <li>Bereitstellung des Terrain-Datensatzes</li>
+            <li>Erstellung eigener Assets</li>
+            <li>Konvertierung von Daten in 3D Tiles</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Standards & 3D Tiles</h1>
+        </section>
+
+        <section>
+          <b>Standards</b>
+          <ul>
+            <li>
+              Raster- und Vektordaten im Web (WMS, WMTS, GeoJSON, Shapefile,
+              KML)
+            </li>
+            <li>
+              3D-Modelle: nur Austauschformate zur weiteren Bearbeitung und
+              nicht für Web-Darstellung
+            </li>
+            <li>TODO: logo gltf</li>
+            <li>"JPEG für 3D"</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium 3D Tiles</b>
+          <ul>
+            <li>
+              offene Spezifikation für das streamen von umfangreichen
+              3D-Geodatensätzen
+              <ul>
+                <li>Gebäude</li>
+                <li>Bäume</li>
+                <li>Punktwolken</li>
+              </ul>
+            </li>
+            <li>Hierarchisches Level of Detail</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium 3D Tiles</b>
+          TODO: image Prinzip der 3D-Tiles BIlder von
+          https://cesium.com/blog/2015/08/10/introducing-3d-tiles/
+        </section>
+
+        <section>
+          <b>Tileset.json</b>
+          <pre>
+            <code class="json" data-trim style="font-size: small">
+{
+  "asset" : {
+    "version": "1.0",
+    "tilesetVersion": "e575c6f1-a45b-420a-b172-6449fa6e0a59",
+  },
+  "properties": {
+    "Height": {
+      "minimum": 1,
+      "maximum": 241.6
+    }
+  },
+  "geometricError": 494.50961650991815,
+  "root": {
+    "boundingVolume": {
+      "region": [
+        -0.0005682966577418737,
+        0.8987233516605286,
+        0.00011646582098558159,
+        0.8990603398325034,
+        0,
+        241.6
+      ]
+    },
+    "geometricError": 268.37878244706053,
+    "refine": "ADD",
+    "content": {
+      "uri": "0/0/0.b3dm",
+      "boundingVolume": {
+        "region": [
+          -0.0004001690908972599,
+          0.8988700116775743,
+          0.00010096729722787196,
+          0.8989625664878067,
+          0,
+          241.6
+        ]
+      }
+    },
+    "children": [..]
+  }
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          Beispiel Kirche von
+          https://github.com/CesiumGS/3d-tiles/blob/master/specification/README.md#tiles
+        </section>
+
+        <section>
+          <h1>Daten</h1>
+        </section>
+
+        <section>
+          <b>Datenverfügbarkeit</b><br />
+          <ul>
+            <li>CityGML</li>
+            <li>Pipeline Cesium (Cesium Ion)</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Konvertierung in 3D Tilesets</b><br />
+          <img
+            src="../shared/img/3d-geoapplications-talk/ablauf_importer.png"
+            class="plain"
+          />
+        </section>
+
+        <section>
+          <b>Einsatzmöglichkeiten</b>
+          <ul>
+            <li class="fragment">
+              Überwachung von Radioaktivität im Meerwasser durch die IAEA
+            </li>
+            <li class="fragment">
+              Identifizierung von Vegetationsüberschneidungen um Strommasten mit
+              LiDAR-Punktwolken durch intel GEOSPATIAL &amp; CESIUM
+            </li>
+            <li class="fragment">
+              Verfolgung des weltweiten kommerziellen Flugverkehrs mit
+              Flightradar24
+            </li>
+            <li class="fragment">swissgeol.ch - Geologische Daten im Web</li>
+            <li class="fragment">
+              Viele weitere Beispiele unter
+              <a
+                target="_blank"
+                href="https://cesium.com/blog/categories/user-stories/"
+                >User Stories</a
+              >…
+            </li>
+          </ul>
+        </section>
 
         <section id="thanks-questions">
           <h4>Vielen Dank!</h4>
