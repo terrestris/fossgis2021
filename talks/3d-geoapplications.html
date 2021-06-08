@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>3D-Geoapplikationen mit CesiumJS</title>
+    <meta name="author" content="Michael Holthausen" />
+    <meta name="author" content="terrestris GmbH &amp; Co. KG" />
+    <meta
+      name="description"
+      content="3D-Geoapplikationen mit CesiumJS - Daten, Einsatzmöglichkeiten und Spezifikationen | Vortrag auf der FOSSGIS 2021, Rapperswil"
+    />
+
+    <!--[if lt IE 9]>
+      <script src="../shared/reveal.js-3.6.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../shared/reveal.js-3.6.0/css/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="../shared/reveal.js-3.6.0/css/theme/beige.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Merriweather"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../shared/css/customized.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      rel="stylesheet"
+      href="../shared/reveal.js-3.6.0/lib/css/zenburn.css"
+    />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? '../shared/reveal.js-3.6.0/css/print/pdf.css'
+        : '../shared/reveal.js-3.6.0/css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- BEGIN OF SLIDES -->
+      <div class="slides">
+        <section
+          id="start"
+          data-background-image="../shared/img/3d-geoapplications-talk/start.png"
+          data-background-size="auto 90%"
+        >
+          <p>&nbsp;</p>
+        </section>
+        <section
+          id="title"
+          data-background-image="../shared/img/3d-geoapplications-talk/start_filter.png"
+          data-background-size="auto 90%"
+        >
+          <h2>3D-Geoapplikationen mit CesiumJS</h2>
+          <h3>Daten, Einsatzmöglichkeiten und Spezifikationen</h3>
+          <br />
+          <p>
+            <small>Michael Holthausen, terrestris GmbH & Co. KG</small>
+          </p>
+          <hr />
+          <p>
+            <small>FOSSGIS 2021, Rapperswil 08.06.2021</small>
+          </p>
+        </section>
+
+        <section id="toc">
+          <h2>Gliederung</h2>
+          <ul>
+            <li>Über&hellip;</li>
+            <li>Allgemeiner Überblick</li>
+            <li>Standards & 3D Tiles</li>
+            <li>Daten</li>
+          </ul>
+        </section>
+
+        <section id="about-author-michael-holthausen">
+          <h2>Michael Holthausen</h2>
+          <div class="split-info">
+            <div class="part" style="width: 35%">
+              <img src="../shared/img/mh.jpg" class="plain" width="200" /><br />
+              <small>
+                <a class="email" href="mailto:holthausen@terrestris.de"
+                  >holthausen@terrestris.de</a
+                ><br />
+                <a class="github" href="https://github.com/mholthausen/"
+                  >@mholthausen</a
+                ><br /> </small
+              ><br />
+            </div>
+            <div class="part" style="width: 60%">
+              <div class="enumeration">
+                <ul>
+                  <li>M. Sc. Geographie</li>
+                  <li>Developer @terrestris</li>
+                  <li>Anwendungsentwickler</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both"></div>
+        </section>
+
+        <section id="about-company-terrestris">
+          <h2>terrestris</h2>
+          <div class="split-info">
+            <div class="part" style="width: 35%">
+              <img
+                src="../shared/img/terrestris-logo-normal.svg"
+                class="plain"
+                width="400"
+              />
+              <br /><small>
+                <a class="email" href="mailto:info@terrestris.de"
+                  >info@terrestris.de</a
+                ><br />
+                <a class="github" href="https://github.com/terrestris/"
+                  >@terrestris</a
+                ><br />
+                <a class="twitter" href="https://twitter.com/terrestrisde/"
+                  >@terrestrisde</a
+                >
+              </small>
+            </div>
+            <div class="part" style="width: 60%">
+              <div class="enumeration">
+                <ul>
+                  <li>
+                    <a href="https://www.terrestris.de/">terrestris.de</a>
+                  </li>
+                  <li>OpenSource GIS aus Bonn</li>
+                  <li>Entwicklung, Projekte &amp; Support/Schulung</li>
+                  <li>Beratung, Planung, Implementierung &amp; Wartung</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both"></div>
+        </section>
+
+        <section>
+          <h1>Allgemeiner Überblick</h1>
+        </section>
+
+        <section>
+          <h2>Was ist CesiumJS?</h2>
+        </section>
+
+        <section>
+          <b>Virtueller Globus</b>
+          <ul>
+            <li class="fragment">
+              3D Software-Modell zur Darstellung der Erde oder anderer
+              Himmelskörper
+            </li>
+            <li class="fragment">frei in einer virtuellen Umgebung bewegen</li>
+            <li class="fragment">jeden beliebigen Punkt ansteuern</li>
+            <li class="fragment">Blickwinkel ändern</li>
+            <li class="fragment">
+              über unterschiedliche Skalierung hinein und heraus zu zoomen
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Virtueller Globus</b><br />
+          <img
+            cite="https://github.com/AnalyticalGraphicsInc/3d-tiles/blob/master/specification/figures/tree.png"
+            width="200"
+            data-src="../shared/img/3d-geoapplications-talk/globus-2534766_1920.png"
+            alt="GLobus"
+            class="plain"
+          /><br />
+          <ul>
+            <li class="fragment">vereinfachte Darstellung der realen Welt</li>
+            <li class="fragment">durch die Zoomfunktion genauere Details</li>
+            <li class="fragment">
+              Darstellung von aufbereiteten Daten in Kartenebenen
+            </li>
+            <li class="fragment">lokal oder externer Server</li>
+          </ul>
+          <br />
+        </section>
+
+        <section>
+          <b>CesiumJS</b><br />
+          <iframe
+            tabindex="0"
+            allowfullscreen=""
+            loading="lazy"
+            src="https://sandcastle.cesium.com/standalone.html#c=bY9Pa8MwDMW/ivGpgyGz6+qGQq+FHQY7+aI6Wmuq2MFSUtJPvyS9jK26vaf3058RqxkT3aiancl0MweSNHTwtXqbYOOqDyUrpkw12JdtyPbVetGJqQnZrLVPXV+qmqHyBsApdT2jkrjTEK+kEEUWcIl69xv1bRpNandPNpnIKDJ3vgfmz3SnYBvv5vw/lAu2KZ8/RqqM0xK7vDXHhwkA3s3yOaml8Anrn8nzfxfVXt6dE8xtRFEmeBwIsXTujMxUJ/cD"
+            width="640"
+            height="480"
+            class="overlaid-iframe__StyledIframe-sc-14s1ku7-1 hNtyZL"
+          ></iframe>
+        </section>
+
+        <section>
+          <b>CesiumJS</b><br />
+          <ul>
+            <li>Apache 2.0 Lizenz</li>
+            <li>Veröffentlichung über GitHub & npm</li>
+            <li>Partizipation möglich</li>
+            <li>Community-Support über Forum</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>CesiumJS</b>
+          <ul>
+            <li>JavaScript, WebGL, HTML 5</li>
+            <li class="fragment">
+              <img
+                cite="https://commons.wikimedia.org/wiki/File:WebGL_Logo.svg"
+                height="70"
+                data-src="../shared/img/WebGL_Logo.png"
+                alt="The logo of Khronos Group's WebGL"
+                class="plain"
+              />
+              <ul>
+                <li>hardwarebeschleunigtes 3D-Rendering mit JavaScript</li>
+                <li>basiert auf der bewährten Grafik-API OpenGL</li>
+                <li>alle Desktopbrowser</li>
+                <li>die meisten mobilen Browser</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Anforderungen des Browsers</h2>
+        </section>
+
+        <section>
+          <b>Anforderungen des Browsers</b><br />
+          <p>
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Google_Chrome_icon_(September_2014).svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png"
+              alt=" Google Chrome logo"
+              class="plain"
+            />
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Firefox_Logo,_2017.svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/6/67/Firefox_Logo%2C_2017.svg"
+              alt="Logo of Firefox since version 57 (2017)"
+              class="plain"
+            />
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Safari_browser_logo.svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Safari_browser_logo.svg/234px-Safari_browser_logo.svg.png"
+              alt="Logo del navegador de Apple, 'Safari'"
+              class="plain"
+            />
+            <img
+              cite="https://en.wikipedia.org/wiki/File:Microsoft_Edge_logo_(2019).svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/en/9/98/Microsoft_Edge_logo_%282019%29.svg"
+              alt="Logo of Microsoft Edge browser"
+              class="plain"
+            />
+          </p>
+        </section>
+
+        <section>
+          <h2>Aktueller Entwicklungsstand der Bibliothek</h2>
+        </section>
+
+        <section>
+          <b>Highlights der vergangenen Versionen</b><br />
+          <ul>
+            <li>Cesium for Unreal Engine</li>
+            <li>grundlegende Unterstützung für das Rendering im Untergrund</li>
+            <li>backFaceCulling</li>
+            <li>Migration nach ES6 Module</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>API Funktionen</h2>
+        </section>
+
+        <section>
+          <b>API Funktionen</b><br />
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                href="https://cesium.com/docs/cesiumjs-ref-doc/"
+                >Cesium Documentation</a
+              >
+            </li>
+            <li>CZML</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>CZML (Cesium Language)</b>
+          <ul>
+            <li>JSON basiertes Format</li>
+            <li>Punkte, Flächen, Modelle und andere grafische Grundelemente</li>
+            <li>
+              Beschreibung einer raumzeitlich-dynamischen grafischen Szene
+            </li>
+            <li>Effizientes Streaming &amp; einfach zu parsen</li>
+            <li>Hauptsächlich zur Anzeige im Browser über CesiumJS</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium ION</b>
+          <ul>
+            <li>cloudbasierter Streaming-Dienst für CesiumJS</li>
+            <li>Bereitstellung des Terrain-Datensatzes</li>
+            <li>Erstellung eigener Assets</li>
+            <li>Konvertierung von Daten in 3D Tiles</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Standards & 3D Tiles</h1>
+        </section>
+
+        <section>
+          <b>Standards</b>
+          <ul>
+            <li>
+              Raster- und Vektordaten im Web (WMS, WMTS, GeoJSON, Shapefile,
+              KML)
+            </li>
+            <li>
+              3D-Modelle: nur Austauschformate zur weiteren Bearbeitung und
+              nicht für Web-Darstellung
+            </li>
+            <li>
+              <img
+                width="320"
+                data-src="../shared/img/3d-geoapplications-talk/gltf-logo.png"
+                class="plain"
+              />
+            </li>
+            <li>"JPEG für 3D"</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium 3D Tiles</b>
+          <ul>
+            <li>
+              offene Spezifikation für das streamen von umfangreichen
+              3D-Geodatensätzen
+              <ul>
+                <li>Gebäude</li>
+                <li>Bäume</li>
+                <li>Punktwolken</li>
+              </ul>
+            </li>
+            <li>Hierarchisches Level of Detail</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Cesium 3D Tiles</b><br />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream0.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream1.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream2.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
+        </section>
+
+        <section>
+          <b>Tileset.json</b>
+          <pre>
+            <code class="json" data-trim style="font-size: small">
+{
+  "asset" : {
+    "version": "1.0",
+    "tilesetVersion": "e575c6f1-a45b-420a-b172-6449fa6e0a59",
+  },
+  "properties": {
+    "Height": {
+      "minimum": 1,
+      "maximum": 241.6
+    }
+  },
+  "geometricError": 494.50961650991815,
+  "root": {
+    "boundingVolume": {
+      "region": [
+        -0.0005682966577418737,
+        0.8987233516605286,
+        0.00011646582098558159,
+        0.8990603398325034,
+        0,
+        241.6
+      ]
+    },
+    "geometricError": 268.37878244706053,
+    "refine": "ADD",
+    "content": {
+      "uri": "0/0/0.b3dm",
+      "boundingVolume": {
+        "region": [
+          -0.0004001690908972599,
+          0.8988700116775743,
+          0.00010096729722787196,
+          0.8989625664878067,
+          0,
+          241.6
+        ]
+      }
+    },
+    "children": [..]
+  }
+}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <b>Cesium 3D Tiles</b><br />
+          <img
+            cite="https://github.com/CesiumGS/3d-tiles/blob/master/specification/README.md#k-d-trees"
+            data-src="../shared/img/3d-geoapplications-talk/pointcloud-octree.png"
+            alt="Punktwolke mit additiver Verfeinerung"
+            height="300"
+            class="plain"
+          /><br />
+          Punktwolke mit additiver Verfeinerung.
+          <a
+            href="https://sandcastle.cesium.com/index.html?src=3D%20Tiles%20Point%20Cloud.html"
+            target="_blank"
+          >
+            Punktwolke der Kirche St. Marie in Chappes, Frankreich.</a
+          >
+        </section>
+
+        <section>
+          <h1>Daten</h1>
+        </section>
+
+        <section>
+          <b>Datenverfügbarkeit</b><br />
+          <ul>
+            <li>CityGML</li>
+            <li>Pipeline Cesium (Cesium Ion)</li>
+          </ul>
+        </section>
+
+        <section>
+          <b>Konvertierung in 3D Tilesets</b><br />
+          <img
+            src="../shared/img/3d-geoapplications-talk/ablauf_importer.png"
+            class="plain"
+          />
+        </section>
+
+        <section>
+          <b>Einsatzmöglichkeiten</b>
+          <ul>
+            <li class="fragment">
+              Überwachung von Radioaktivität im Meerwasser durch die IAEA
+            </li>
+            <li class="fragment">
+              Identifizierung von Vegetationsüberschneidungen um Strommasten mit
+              LiDAR-Punktwolken durch intel GEOSPATIAL &amp; CESIUM
+            </li>
+            <li class="fragment">
+              Verfolgung des weltweiten kommerziellen Flugverkehrs mit
+              Flightradar24
+            </li>
+            <li class="fragment">swissgeol.ch - Geologische Daten im Web</li>
+            <li class="fragment">
+              Viele weitere Beispiele unter
+              <a
+                target="_blank"
+                href="https://cesium.com/blog/categories/user-stories/"
+                >User Stories</a
+              >…
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <a href="https://sandcastle.cesium.com/index.html" target="_blank"
+            >sandcastle.cesium.com/</a
+          >
+        </section>
+
+        <section id="thanks-questions">
+          <h4>Vielen Dank!</h4>
+          <hr />
+          <h1 style="font-size: 3em">Fragen &amp; Anmerkungen?</h1>
+          <hr />
+          <p class="subtle">
+            <a href="#/imprint">Impressum</a>
+          </p>
+        </section>
+
+        <section id="imprint">
+          <h2>Impressum</h2>
+          <h4>Autor</h4>
+          <div style="width: 45%; float: left">
+            <address style="text-align: left">
+              <strong>Michael Holthausen</strong><br />
+              <span style="font-size: smaller">
+                terrestris GmbH &amp; Co. KG<br />
+                Kölnstr. 99<br />
+                53111 Bonn<br />
+                holthausen@terrestris.de
+              </span>
+            </address>
+          </div>
+          <h4 style="clear: both">Lizenz</h4>
+          <p id="license">
+            Diese Folien sind unter
+            <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+              >CC BY-SA</a
+            >
+            veröffentlicht.
+          </p>
+          <p>
+            <a
+              href="https://terrestris.github.io/fossgis2021/talks/3d-geoapplications.html#/start"
+              >Vortragsfolien</a
+            >,
+            <a
+              href="https://terrestris.github.io/fossgis2021/talks/3d-geoapplications.pdf"
+              >PDF-Version</a
+            >,
+            <a href="https://github.com/terrestris/fossgis2021"
+              >git repository</a
+            >
+          </p>
+        </section>
+      </div>
+      <!-- END OF SLIDES -->
+    </div>
+
+    <script src="../shared/reveal.js-3.6.0/lib/js/head.min.js"></script>
+    <script src="../shared/reveal.js-3.6.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js-3.6.0#configuration
+      // - https://github.com/hakimel/reveal.js-3.6.0#dependencies
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        dependencies: [
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/marked.js' },
+          { src: '../shared/reveal.js-3.6.0/plugin/markdown/markdown.js' },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/notes/notes.js',
+            async: true
+          },
+          {
+            src: '../shared/reveal.js-3.6.0/plugin/highlight/highlight.js',
+            async: true,
+            callback: function () {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
