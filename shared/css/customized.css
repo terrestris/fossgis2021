@@ -290,3 +290,51 @@ span.questionmark-overlay::before {
   top: 0;
   left: 50%;
 }
+
+img.dockerhub {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 0em;
+  bottom: 5em;
+  width: 130px; 
+}
+
+img.octocat {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 0em;
+  bottom: 2em;
+  width: 130px; 
+}
+
+img.npm {
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  width: 130px;
+}
+
+img.mvncentral {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: 0;
+  width: 300px;
+}
+
+#oss-products a,
+#oss-products a:link, 
+#oss-products a:visited,
+#oss-products a:hover,
+#oss-products a:active {
+  font-size: 0.75em;
+  font-family: 'FiraCode Nerd Font', 'Courier New', Courier, monospace;
+  color: #333;
+  border-bottom: 1px dotted #333
+
+}

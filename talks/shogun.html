@@ -22,7 +22,7 @@
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="../shared/reveal.js-3.6.0/lib/css/zenburn.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement( 'link' );
@@ -71,13 +71,7 @@
             <li>Standardprodukt vs. Individualentwicklung</li>
             <li>Produkte als Basis für "partly-handcrafted"</li>
             <li>Beliebte Zusatzkomponenten</li>
-            <li>Beispiele
-              <ul style="font-size: smaller">
-                <li>Anwendungen zum Gewässermanagement</li>
-                <li>holistische Ökosystemrestauration</li>
-                <li>Verwaltung &amp; Visualisierung von 3D Geodaten</li>
-              </ul>
-            </li>
+            <li>Beispiele</li>
             <li>Fazit</li>
           </ul>
         </section>
@@ -173,7 +167,6 @@
             <li>&rarr; gute Flexibilität, Erweiterbarkeit, Sicherheit, <span class="highlight">Zukunftsfähigkeit</span> &amp; einfacherer <span class="highlight">Partizipation</span> für alle Beteiligten</li>
             <li>Viel klein-klein und technisch jedoch auch zusammenfassende Pakete</li>
             <li>bewusste Einordnung = <span class="highlight">erhellend</span></li>
-            <!-- <li>talk selbst = schwierig zu strukturieren</li> -->
           </ul>
         </section>
 
@@ -257,7 +250,7 @@
         </section>
 
         <section>
-          <h2>GDI Domaine als Kern</h2>
+          <h2>GDI Domäne als Kern</h2>
           <ul>
             <li>Einige Gemeinsamkeiten</li>
             <li>Jedoch unserer Erfahrung nach auch
@@ -291,39 +284,44 @@
           <h3>… und geschickt zusammensetzen</h3>
         </section>
 
-        <section>
+        <section id="oss-products">
           <h2>OSS Produkte</h2>
           <div class="split-info">
             <div class="part" style="width:47%">
               <div class="enumeration">
                 <ul>
-                  <li>SHOGun (Java/Spring)</li>
-                  <li>react-geo-baseclient</li>
-                  <li>shogun-admin</li>
-                  <li>react-geo</li>
-                  <li>OpenLayers</li>
-                  <li>ol-util</li>
-                  <li>base-util</li>
-                  <li>react-util</li>
-                  <li>keycloak-event-listener-shogun</li>
+                  <li><a href="https://github.com/terrestris/shogun">SHOGun-Boot</a></li>
+                  <li><a href="https://github.com/terrestris/react-geo-baseclient">react-geo-baseclient</a></li>
+                  <li><a href="https://github.com/terrestris/shogun-admin">shogun-admin</a></li>
+                  <li><a href="https://github.com/terrestris/shogun-admin">react-geo</a></li>
+                  <li><a href="https://github.com/openlayers/openlayers">OpenLayers</a></li>
+                  <li><a href="https://github.com/terrestris/ol-util">ol-util</a></li>
+                  <li><a href="https://github.com/terrestris/base-util">base-util</a></li>
+                  <li><a href="https://github.com/terrestris/react-util">react-util</a></li>
+                  <li><a href="https://github.com/terrestris/keycloak-event-listener-shogun">keycloak-event-listener-shogun</a></li>
                 </ul>
               </div>
             </div>
             <div class="part" style="width:47">
               <div class="enumeration">
                 <ul>
-                  <li>GeoExt</li>
-                  <li>BasiGX</li>
-                  <li>GeoStyler (+x)</li>
-                  <li>own Docker images</li>
-                  <li>distinct-wps</li>
-                  <li>terrestris-filterfunctions</li>
-                  <li>terrestris-utils</li>
+                  <li><a href="https://github.com/geoext/geoext">GeoExt</a></li>
+                  <li><a href="https://github.com/terrestris/BasiGX">BasiGX</a></li>
+                  <li><a href="https://github.com/geostyler/geostyler">GeoStyler</a> (<a href="https://github.com/geostyler/geostyler#related-projects">+x</a>)</li>
+                  <li><a href="https://hub.docker.com/u/terrestris">own Docker images</a></li>
+                  <li><a href="https://github.com/terrestris/distinct-wps">distinct-wps</a></li>
+                  <li><a href="https://github.com/terrestris/terrestris-filterfunctions">terrestris-filterfunctions</a></li>
+                  <li><a href="https://github.com/terrestris/terrestris-utils<">terrestris-utils</a></li>
+                  <li>…</li>
                 </ul>
               </div>
             </div>
           </div>
           <div style="clear:both"></div>
+          <img src="../shared/img/shogun-talk/docker-hub-logo.png" class="dockerhub plain" />
+          <img src="../shared/img/shogun-talk/Octocat.png" class="octocat plain" />
+          <img src="../shared/img/shogun-talk/npm.png" class="npm plain" />
+          <img src="../shared/img/shogun-talk/mvncentral.png" class="mvncentral plain" />
         </section>
 
         <section>
@@ -342,6 +340,7 @@
         </section>
       
         <section>
+          <h2>Zusatzkomponenten</h2>
           <ul>
             <li>GNOS</li>
             <li>LDAP</li>
@@ -349,7 +348,7 @@
             <li>GeoStyler</li>
             <li>GeoServer-Plugins</li>
             <li>MapFish Print</li>
-            <li>3rd Party Services<li>
+            <li>3rd Party Services</li>
             <li>…</li>
           </ul>
         </section>
@@ -368,31 +367,33 @@
         </section>
 
         <section>
-          <h4>Besonderheiten</h4>
+          <h3>Besonderheiten</h3>
           <ul>
             <li>Geringe Anpassung an Basisarchitektur, Ziel: Verwaltung von Kartenapplikationen und Kartendiensten</li>
-            <li>Einfacher WebClient auf Basis von react-geo / react-geo</li>
-            <li>Anbindung an unternehmensweites LDAP</li>
+            <li><span class="highlight">Einfacher WebClient</span> auf Basis von react-geo / react-geo</li>
+            <li>Anbindung an unternehmensweites <span class="highlight">LDAP</span></li>
             <li>Absicherung der Dienste über GeoFence</li>
           </ul>
         </section>
 
         <section>
           <h3>Anwendungen zum Gewässermanagement</h3>
+          <h4>PROGEMIS®</h4>
         </section>
 
         <section>
           <img src="../shared/img/shogun-talk/progemis.png" class="stretch plain"/>
+          <span class="img-attribution"><a href="https://www.progemis.de/de/">PROGEMIS®</a></span>
         </section>
 
         <section>
-          <h4>Besonderheiten</h4>
+          <h3>Besonderheiten</h3>
           <ul>
             <li>Extrem komplexe Fachanwendung, übliche Anwendungen von GDIs (Instanzenverwaltung etc.) nicht benötigt</li>
-            <li>Massive Erweiterung auf Basis von SHOGun-Boot</li>
-            <li>Anbindung an Fachschnittstellen</li>
-            <li>Dynamische UIs (Stichwort FormConfig Parser)</li>
-            <li>Deployment über Kubernetes, Skalierbarkeit</li>
+            <li><span class="highlight">Massive Erweiterung</span> auf Basis von SHOGun-Boot</li>
+            <li>Anbindung an Fachschnittstellen (z.B. ORS)</li>
+            <li>Dynamische UIs</li>
+            <li>Deployment über <span class="highlight">Kubernetes</span>, Skalierbarkeit</li>
           </ul>
         </section>
 
@@ -401,14 +402,16 @@
         </section>
 
         <section>
+          <h3>HERMOSA</h3>
           <img src="../shared/img/shogun-talk/hermosa-composition.png" class="stretch plain"/>
+          <span class="img-attribution"><a href="https://hermosa.earth">HERMOSA</a></span>
         </section>
 
         <section>
-          <h4>Besonderheiten</h4>
+          <h3>Besonderheiten</h3>
           <ul>
-            <li>Anbindung Actinia</li>
-            <li>Moderation der Prozesspipelines zwischen Actinia und GeoServer</li>
+            <li><span class="highlight">Anbindung Actinia</span></li>
+            <li><span class="highlight">Moderation</span> der Prozesspipelines zwischen Actinia und GeoServer</li>
             <li>Eigene Benutzerverwaltung</li>
           </ul>
         </section>
@@ -418,11 +421,19 @@
         </section>
 
         <section>
-          <h4>Besonderheiten</h4>
+          <img src="../shared/img/shogun-talk/3d.png" class="stretch plain"/>
+          <span class="img-attribution">Data: <a href="https://doi.org/10.1016/j.chemer.2010.05.008">Noack, V., Cherubini, Y., Scheck-Wenderoth, M., Lewerenz, B., 
+          Höding, T., Simon, A., Moeck, I. (2010): Assessment of the present-day thermal field (NE German Basin) 
+          - Inferences from 3D modelling. – Chemie der Erde – Geochemistry, 70, Suppl. 3, 47-62. 
+          https://doi.org/10.1016/j.chemer.2010.05.008</a> + <a href="https://open.nrw/">OpenNRW</a></span>
+        </section>
+
+        <section>
+          <h3>Besonderheiten</h3>
           <ul>
             <li>Keine explizite Nutzer- oder Applikationssteuerung</li>
-            <li>Komplett losgelöster Client (basierend auf React und CesiumJS)</li>
-            <li>Kernaufgabe: Moderation von Datenaufbereitungspipelines (3D Tiles) / Jobverwaltung</li>
+            <li>Komplett losgelöster Client (basierend auf React und <span class="highlight">CesiumJS</span>)</li>
+            <li>Kernaufgabe: Moderation von <span class="highlight">Datenaufbereitung</span>spipelines (3D Tiles) / Jobverwaltung</li>
           </ul>
         </section>
 
