@@ -54,14 +54,14 @@
       <div class="slides">
         <section
           id="start"
-          data-background-image="../shared/img/geostyler-talk/geostyler_logo.svg"
+          data-background-image="../shared/img/3d-geoapplications-talk/start.png"
           data-background-size="auto 90%"
         >
           <p>&nbsp;</p>
         </section>
         <section
           id="title"
-          data-background-image="../shared/img/geostyler-talk/geostyler_logo_filter.svg"
+          data-background-image="../shared/img/3d-geoapplications-talk/start_filter.png"
           data-background-size="auto 90%"
         >
           <h2>3D-Geoapplikationen mit CesiumJS</h2>
@@ -80,12 +80,9 @@
           <h2>Gliederung</h2>
           <ul>
             <li>Über&hellip;</li>
-            <li>Was ist CesiumJS?</li>
-            <li>Anforderungen</li>
-            <li>Aktueller Entwicklungsstand</li>
+            <li>Allgemeiner Überblick</li>
             <li>Standards & 3D Tiles</li>
-            <li>Verfügbarkeit von Daten</li>
-            <li>Einsatzmöglichkeiten & Features</li>
+            <li>Daten</li>
           </ul>
         </section>
 
@@ -179,6 +176,13 @@
 
         <section>
           <b>Virtueller Globus</b><br />
+          <img
+            cite="https://github.com/AnalyticalGraphicsInc/3d-tiles/blob/master/specification/figures/tree.png"
+            width="200"
+            data-src="../shared/img/3d-geoapplications-talk/globus-2534766_1920.png"
+            alt="GLobus"
+            class="plain"
+          /><br />
           <ul>
             <li class="fragment">vereinfachte Darstellung der realen Welt</li>
             <li class="fragment">durch die Zoomfunktion genauere Details</li>
@@ -188,7 +192,6 @@
             <li class="fragment">lokal oder externer Server</li>
           </ul>
           <br />
-          TODO: Bild herkömmlicher Globus einbinden
         </section>
 
         <section>
@@ -219,7 +222,13 @@
           <ul>
             <li>JavaScript, WebGL, HTML 5</li>
             <li class="fragment">
-              WebGL TODO: WebGL Logo
+              <img
+                cite="https://commons.wikimedia.org/wiki/File:WebGL_Logo.svg"
+                height="70"
+                data-src="../shared/img/WebGL_Logo.png"
+                alt="The logo of Khronos Group's WebGL"
+                class="plain"
+              />
               <ul>
                 <li>hardwarebeschleunigtes 3D-Rendering mit JavaScript</li>
                 <li>basiert auf der bewährten Grafik-API OpenGL</li>
@@ -234,7 +243,39 @@
           <h2>Anforderungen des Browsers</h2>
         </section>
 
-        <section>TODO: Auflistung aller modernen Browsers<br /></section>
+        <section>
+          <b>Anforderungen des Browsers</b><br />
+          <p>
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Google_Chrome_icon_(September_2014).svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png"
+              alt=" Google Chrome logo"
+              class="plain"
+            />
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Firefox_Logo,_2017.svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/6/67/Firefox_Logo%2C_2017.svg"
+              alt="Logo of Firefox since version 57 (2017)"
+              class="plain"
+            />
+            <img
+              cite="https://commons.wikimedia.org/wiki/File:Safari_browser_logo.svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Safari_browser_logo.svg/234px-Safari_browser_logo.svg.png"
+              alt="Logo del navegador de Apple, 'Safari'"
+              class="plain"
+            />
+            <img
+              cite="https://en.wikipedia.org/wiki/File:Microsoft_Edge_logo_(2019).svg"
+              height="60"
+              data-src="https://upload.wikimedia.org/wikipedia/en/9/98/Microsoft_Edge_logo_%282019%29.svg"
+              alt="Logo of Microsoft Edge browser"
+              class="plain"
+            />
+          </p>
+        </section>
 
         <section>
           <h2>Aktueller Entwicklungsstand der Bibliothek</h2>
@@ -306,7 +347,13 @@
               3D-Modelle: nur Austauschformate zur weiteren Bearbeitung und
               nicht für Web-Darstellung
             </li>
-            <li>TODO: logo gltf</li>
+            <li>
+              <img
+                width="320"
+                data-src="../shared/img/3d-geoapplications-talk/gltf-logo.png"
+                class="plain"
+              />
+            </li>
             <li>"JPEG für 3D"</li>
           </ul>
         </section>
@@ -328,9 +375,28 @@
         </section>
 
         <section>
-          <b>Cesium 3D Tiles</b>
-          TODO: image Prinzip der 3D-Tiles BIlder von
-          https://cesium.com/blog/2015/08/10/introducing-3d-tiles/
+          <b>Cesium 3D Tiles</b><br />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream0.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream1.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
+          <img
+            cite="https://cesium.com/blog/2015/08/10/introducing-3d-tiles/"
+            height="150"
+            data-src="../shared/img/3d-geoapplications-talk/2015-08-10-stream2.jpg"
+            alt="3D buildings in Cambridge"
+            class="plain"
+          />
         </section>
 
         <section>
@@ -383,8 +449,21 @@
         </section>
 
         <section>
-          Beispiel Kirche von
-          https://github.com/CesiumGS/3d-tiles/blob/master/specification/README.md#tiles
+          <b>Cesium 3D Tiles</b><br />
+          <img
+            cite="https://github.com/CesiumGS/3d-tiles/blob/master/specification/README.md#k-d-trees"
+            data-src="../shared/img/3d-geoapplications-talk/pointcloud-octree.png"
+            alt="Punktwolke mit additiver Verfeinerung"
+            height="300"
+            class="plain"
+          /><br />
+          Punktwolke mit additiver Verfeinerung.
+          <a
+            href="https://sandcastle.cesium.com/index.html?src=3D%20Tiles%20Point%20Cloud.html"
+            target="_blank"
+          >
+            Punktwolke der Kirche St. Marie in Chappes, Frankreich.</a
+          >
         </section>
 
         <section>
@@ -431,6 +510,12 @@
               >…
             </li>
           </ul>
+        </section>
+
+        <section>
+          <a href="https://sandcastle.cesium.com/index.html" target="_blank"
+            >sandcastle.cesium.com/</a
+          >
         </section>
 
         <section id="thanks-questions">
